@@ -25,17 +25,14 @@ namespace SwebONE.Work
             this.button3 = new Swebui.Controls.Button();
             this.panel4 = new Swebui.Controls.Panel();
             this.panel5 = new Swebui.Controls.Panel();
-            this.dateLab = new Swebui.Controls.Label();
             this.weekLab = new Swebui.Controls.Label();
-            this.panel6 = new Swebui.Controls.Panel();
-            this.timeLab = new Swebui.Controls.Label();
+            this.dateLab = new Swebui.Controls.Label();
             this.panel2 = new Swebui.Controls.Panel();
             this.panel7 = new Swebui.Controls.Panel();
             this.panel8 = new Swebui.Controls.Panel();
             this.label1 = new Swebui.Controls.Label();
             this.lblInfo = new Swebui.Controls.Label();
             this.listView1 = new Swebui.Controls.ListView();
-            this.timer1 = new Swebui.Controls.Timer();
             // 
             // panel1
             // 
@@ -92,9 +89,10 @@ namespace SwebONE.Work
             this.panel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(1)))));
             this.panel4.BorderRadius = 8;
             this.panel4.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.panel5,
-            this.panel6});
+            this.panel5});
             this.panel4.Flex = 1;
+            this.panel4.ItemAlign = Swebui.Controls.LayoutItemAlign.FlexStart;
+            this.panel4.JustifyAlign = Swebui.Controls.LayoutJustifyAlign.Center;
             this.panel4.Margin = new Swebui.Controls.Margin(10F);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new Swebui.Controls.Padding(20F);
@@ -103,43 +101,29 @@ namespace SwebONE.Work
             // panel5
             // 
             this.panel5.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.dateLab,
-            this.weekLab});
+            this.weekLab,
+            this.dateLab});
             this.panel5.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel5.Flex = 1;
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(0, 13);
-            // 
-            // dateLab
-            // 
-            this.dateLab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.dateLab.Name = "dateLab";
-            this.dateLab.Size = new System.Drawing.Size(0, 0);
-            this.dateLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            this.panel5.Size = new System.Drawing.Size(337, 20);
             // 
             // weekLab
             // 
+            this.weekLab.FontSize = 24F;
             this.weekLab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.weekLab.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.weekLab.Name = "weekLab";
             this.weekLab.Size = new System.Drawing.Size(0, 0);
             this.weekLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
-            // panel6
+            // dateLab
             // 
-            this.panel6.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.timeLab});
-            this.panel6.Direction = Swebui.Controls.LayoutDirection.Row;
-            this.panel6.Margin = new Swebui.Controls.Margin(0F, 20F, 0F, 0F);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(0, 30);
-            // 
-            // timeLab
-            // 
-            this.timeLab.Flex = 1;
-            this.timeLab.FontSize = 30F;
-            this.timeLab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.timeLab.Name = "timeLab";
-            this.timeLab.Size = new System.Drawing.Size(68, 30);
+            this.dateLab.FontSize = 20F;
+            this.dateLab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.dateLab.Name = "dateLab";
+            this.dateLab.Size = new System.Drawing.Size(0, 0);
+            this.dateLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
             // panel2
             // 
@@ -201,16 +185,9 @@ namespace SwebONE.Work
             this.listView1.Size = new System.Drawing.Size(0, 300);
             this.listView1.TemplateControlName = "ATMainLayout";
             // 
-            // timer1
-            // 
-            this.timer1.Name = "timer1";
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // FrmWork
             // 
             this.BackColor = System.Drawing.Color.White;
-            this.Components.AddRange(new Swebui.Controls.SwebComponent[] {
-            this.timer1});
             this.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.panel1,
             this.panel2});
@@ -225,16 +202,13 @@ namespace SwebONE.Work
         private Button button1;
         private Button button3;
         private Panel panel4;
-        private Timer timer1;
         private Panel panel5;
-        private Label dateLab;
         private Label weekLab;
-        private Panel panel6;
-        private Label timeLab;
         private Panel panel7;
         private Panel panel8;
         private Label label1;
         private Label lblInfo;
         private ListView listView1;
+        private Label dateLab;
     }
 }

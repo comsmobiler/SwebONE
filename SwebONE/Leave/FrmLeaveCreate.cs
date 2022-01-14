@@ -52,8 +52,9 @@ namespace SwebONE.Leave
                 //当请假编号不为空时，获取请假信息
                 if (LID != null)
                 {
-                    //获取请假信息
-                    LeaveDetailDto leave = AutofacConfig.leaveService.GetByID(LID);
+                    label1.Text = "请假编辑";
+                       //获取请假信息
+                       LeaveDetailDto leave = AutofacConfig.leaveService.GetByID(LID);
                     type = leave.L_TypeID;
                     btnType.Text = AutofacConfig.leaveService.GetTypeNameByID(leave.L_TypeID);
                     dpkStartDate.Value = leave.L_StartDate;

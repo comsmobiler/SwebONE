@@ -413,6 +413,7 @@ namespace SwebONE.Attendance
             this.txtADeviation.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.txtADeviation.Name = "txtADeviation";
             this.txtADeviation.Size = new System.Drawing.Size(100, 0);
+            this.txtADeviation.ValueType = Swebui.Controls.TextBoxValueType.Number;
             this.txtADeviation.TouchLeave += new System.EventHandler(this.txtADeviation_TouchLeave);
             // 
             // label16

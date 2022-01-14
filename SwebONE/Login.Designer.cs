@@ -339,6 +339,7 @@ namespace SwebONE
             this.panel1});
             this.ItemAlign = Swebui.Controls.LayoutItemAlign.Center;
             this.JustifyAlign = Swebui.Controls.LayoutJustifyAlign.Center;
+            this.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
 
         }
         #endregion

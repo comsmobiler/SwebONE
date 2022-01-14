@@ -29,9 +29,9 @@ namespace SwebONE.CostCenter
             this.label3 = new Swebui.Controls.Label();
             this.label4 = new Swebui.Controls.Label();
             this.panel4 = new Swebui.Controls.Panel();
-            this.comboBox1 = new Swebui.Controls.ComboBox();
-            this.comboBox2 = new Swebui.Controls.ComboBox();
-            this.comboBox3 = new Swebui.Controls.ComboBox();
+            this.comboBox1 = new Swebui.Controls.TreeSelect();
+            this.comboBox2 = new Swebui.Controls.TreeSelect();
+            this.comboBox3 = new Swebui.Controls.TreeSelect();
             // 
             // panel1
             // 
@@ -160,10 +160,7 @@ namespace SwebONE.CostCenter
             this.comboBox1.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Placeholder = "";
-            this.comboBox1.PopupHeight = 0;
             this.comboBox1.Size = new System.Drawing.Size(100, 35);
-            this.comboBox1.Text = "";
-            this.comboBox1.ValueChanged += new System.EventHandler(this.comboBox1_ValueChanged);
             // 
             // comboBox2
             // 
@@ -173,10 +170,8 @@ namespace SwebONE.CostCenter
             this.comboBox2.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Placeholder = "";
-            this.comboBox2.PopupHeight = 0;
             this.comboBox2.Size = new System.Drawing.Size(100, 35);
-            this.comboBox2.Text = "";
-            this.comboBox2.ValueChanged += new System.EventHandler(this.comboBox2_ValueChanged);
+ 
             // 
             // comboBox3
             // 
@@ -186,11 +181,8 @@ namespace SwebONE.CostCenter
             this.comboBox3.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Placeholder = "";
-            this.comboBox3.PopupHeight = 0;
             this.comboBox3.Size = new System.Drawing.Size(100, 35);
-            this.comboBox3.Text = "";
-            this.comboBox3.ValueChanged += new System.EventHandler(this.comboBox3_ValueChanged);
-            // 
+              // 
             // FrmCCTemplateCreate
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -214,8 +206,8 @@ namespace SwebONE.CostCenter
         private Label label3;
         private Label label4;
         private Panel panel4;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
+        private TreeSelect comboBox1;
+        private TreeSelect comboBox2;
+        private TreeSelect comboBox3;
     }
 }

@@ -19,6 +19,8 @@ namespace SwebONE.UserInfo
         [System.Diagnostics.DebuggerStepThrough()]
         private void InitializeComponent()
         {
+            Swebui.Controls.TreeSelectNode treeSelectNode1 = new Swebui.Controls.TreeSelectNode();
+            Swebui.Controls.TreeSelectNode treeSelectNode2 = new Swebui.Controls.TreeSelectNode();
             this.panel1 = new Swebui.Controls.Panel();
             this.userImg1 = new Swebui.Controls.Image();
             this.btnName1 = new Swebui.Controls.Label();
@@ -42,7 +44,7 @@ namespace SwebONE.UserInfo
             this.lab = new Swebui.Controls.Label();
             this.btnName = new Swebui.Controls.TextBox();
             this.label7 = new Swebui.Controls.Label();
-            this.btnSex = new Swebui.Controls.ComboBox();
+            this.btnSex = new Swebui.Controls.TreeSelect();
             this.label8 = new Swebui.Controls.Label();
             this.btnEmail = new Swebui.Controls.TextBox();
             this.label9 = new Swebui.Controls.Label();
@@ -321,14 +323,18 @@ namespace SwebONE.UserInfo
             // 
             this.btnSex.Border = new Swebui.Controls.Border(1F);
             this.btnSex.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.btnSex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnSex.DefaultValue = new string[0];
+            this.btnSex.Disabled = true;
             this.btnSex.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
             this.btnSex.Name = "btnSex";
-            this.btnSex.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
-            this.btnSex.Placeholder = "";
-            this.btnSex.PopupHeight = 0;
+            treeSelectNode1.Text = "男";
+            treeSelectNode1.TreeID = "0";
+            treeSelectNode2.Text = "女";
+            treeSelectNode2.TreeID = "1";
+            this.btnSex.Nodes.AddRange(new Swebui.Controls.TreeSelectNode[] {
+            treeSelectNode1,
+            treeSelectNode2});
             this.btnSex.Size = new System.Drawing.Size(0, 35);
-            this.btnSex.Text = "";
             // 
             // label8
             // 
@@ -365,10 +371,10 @@ namespace SwebONE.UserInfo
             // 
             this.dpkBirthday.Border = new Swebui.Controls.Border(1F);
             this.dpkBirthday.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.dpkBirthday.Enable = false;
             this.dpkBirthday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpkBirthday.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
             this.dpkBirthday.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
-            this.dpkBirthday.MinDate = new System.DateTime(((long)(0)));
             this.dpkBirthday.Name = "dpkBirthday";
             this.dpkBirthday.Size = new System.Drawing.Size(0, 30);
             this.dpkBirthday.Value = new System.DateTime(2021, 11, 2, 15, 1, 50, 0);
@@ -418,7 +424,7 @@ namespace SwebONE.UserInfo
         private Label lab;
         private TextBox btnName;
         private Label label7;
-        private ComboBox btnSex;
+        private TreeSelect btnSex;
         private Label label8;
         private TextBox btnEmail;
         private Label label9;

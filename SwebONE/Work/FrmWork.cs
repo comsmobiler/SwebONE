@@ -42,8 +42,7 @@ namespace SwebONE.Work
                 #region""
                 dateLab.Text = string.Format("{0:d}", DateTime.Now);
                 weekLab.Text = DateTime.Now.DayOfWeek.ToString();
-                timeLab.Text = string.Format("{0:T}", DateTime.Now);
-                timer1.Start();
+
                 Bind();
                 #endregion
 
@@ -94,13 +93,6 @@ namespace SwebONE.Work
 
 
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timeLab.Text = string.Format("{0:T}", DateTime.Now);
-
-        }
-
         public void Bind()
         {
             List<Menu> listmenu = AutofacConfig.userService.GetMenuByUserID(Client.Session["U_ID"].ToString());

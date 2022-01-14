@@ -25,11 +25,11 @@ namespace SwebONE.Attendance
         private ATInputDto ATemplate = new ATInputDto();//考勤
         AutofacConfig AutofacConfig = new AutofacConfig();//调用配置类 
         #endregion
-      
+
 
         private void BackBtn_Click(object sender, EventArgs e)
         {
-            this.Parent.Controls.Add(new FrmAttendanceList() { Flex=1});
+            this.Parent.Controls.Add(new FrmAttendanceList() { Flex = 1 });
             this.Parent.Controls.RemoveAt(0);
         }
         /// <summary>
@@ -101,7 +101,7 @@ namespace SwebONE.Attendance
 
         private void FrmAttendanceCreate_Load(object sender, EventArgs e)
         {
-            
+
             GetAT();
         }
 
@@ -126,6 +126,7 @@ namespace SwebONE.Attendance
             {
                 if (string.IsNullOrEmpty(ATNo) == false)
                 {
+                    label1.Text = "考勤编辑";
                     DeleteBtn.Visible = true;
                     ATDetailDto At = AutofacConfig.attendanceService.GetATByID(ATNo);
                     if (At != null)
@@ -214,7 +215,7 @@ namespace SwebONE.Attendance
                 }
                 else
                 {
-                 
+                   
                     ATMode = (int)WorkTimeType.一天一上下班;
                     ATemplate.AT_WeeklyWorkingDay = ((int)Week.Monday).ToString() + "," + ((int)Week.Tuesday).ToString() + "," + ((int)Week.Wednesday).ToString() + "," + ((int)Week.Thursday).ToString() + "," + ((int)Week.Friday).ToString();
                     ATemplate.AT_CommutingType = ATMode;
@@ -315,11 +316,11 @@ namespace SwebONE.Attendance
                         btnATMode.Text = "切换到一天一次上下班";
                         break;
                 }
-       
+
                 //btnSave.Top = lblADeviation.Top + lblADeviation.Height  + 10;
                 if (string.IsNullOrEmpty(ATNo) == false)
                 {
-                  
+
                 }
             }
         }
@@ -382,14 +383,14 @@ namespace SwebONE.Attendance
                 aTUserChooseLayot.selectUser = ATemplate.AT_Users;
             }
 
-            ShowDialog(aTUserChooseLayot, ( obj,  args) =>
+            ShowDialog(aTUserChooseLayot, (obj, args) =>
             {
                 if (aTUserChooseLayot.ShowResult == ShowResult.Yes)
                 {
                     ATemplate.AT_Users = aTUserChooseLayot.selectUser;
                     if (string.IsNullOrEmpty(ATemplate.AT_Users) == false)
                     {
-                        btnUser.Text = "已选择"+(ATemplate.AT_Users.Split(',').Length).ToString() + "人";
+                        btnUser.Text = "已选择" + (ATemplate.AT_Users.Split(',').Length).ToString() + "人";
                     }
 
                 }
@@ -411,7 +412,7 @@ namespace SwebONE.Attendance
                         ReturnInfo r = AutofacConfig.attendanceService.DeleteAttendanceTemplate(ATNo);
                         if (r.IsSuccess == true)
                         {
-                            this.ShowResult =ShowResult.Yes;
+                            this.ShowResult = ShowResult.Yes;
                             Toast("考勤模板已删除!");
                             BackBtn_Click(null, null);
                         }
@@ -428,10 +429,10 @@ namespace SwebONE.Attendance
             }
         }
 
-        
+
         private void txtADeviation_TouchLeave(object sender, EventArgs e)
         {
-            if(txtADeviation.Text!=null && txtADeviation.Text.Trim().Length > 0)
+            if (txtADeviation.Text != null && txtADeviation.Text.Trim().Length > 0)
             {
                 Regex regex = new Regex("^[0-9]*$");
                 if (regex.IsMatch(txtADeviation.Text))

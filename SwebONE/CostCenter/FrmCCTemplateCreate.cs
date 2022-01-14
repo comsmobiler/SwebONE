@@ -36,7 +36,7 @@ namespace SwebONE.CostCenter
         #endregion
         private void BackBtn_Click(object sender, EventArgs e)
         {
-            this.Parent.Controls.Add(new FrmCCTemplateList() { Flex=1});
+            this.Parent.Controls.Add(new FrmCCTemplateList() { Flex = 1 });
             this.Parent.Controls.RemoveAt(0);
         }
         /// <summary>
@@ -125,7 +125,7 @@ namespace SwebONE.CostCenter
 
         private void ReSetBtn_Click(object sender, EventArgs e)
         {
-            comboBox1.Text = comboBox2.Text = comboBox3.Text = "";
+            comboBox1.DefaultValue = comboBox2.DefaultValue = comboBox3.DefaultValue = new string[] { };
         }
 
         private void FrmCCTemplateCreate_Load(object sender, EventArgs e)
@@ -135,14 +135,12 @@ namespace SwebONE.CostCenter
                 List<CostCenter_Type> listCCType = AutofacConfig.costCenterService.GetAllCCType();
                 foreach (CostCenter_Type ccType in listCCType)
                 {
-                    comboBox1.Items.Add(new ComboBoxItem(ccType.CC_T_TypeID, ccType.CC_T_Description));
-                    if (type.Trim().Length > 0)
-                    {
-                        if (type.Trim().Equals(ccType.CC_T_TypeID))
-                        {
-                            comboBox1.SetSelectItem(comboBox1.Items[comboBox1.Items.Count - 1]);
-                        }
-                    }
+                    comboBox1.Nodes.Add(new TreeSelectNode(ccType.CC_T_TypeID, ccType.CC_T_Description));
+
+                }
+                if (type.Trim().Length > 0)
+                {
+                    comboBox1.DefaultValue = new string[] { type };
                 }
                 //获取审批人
                 GetDate();
@@ -153,18 +151,18 @@ namespace SwebONE.CostCenter
                     //根据成本中心模板编号获取成本中心模板数据
                     CC_Type_TemplateDto ccTemplate = AutofacConfig.costCenterService.GetTemplateByID(CTempID);
                     type = ccTemplate.CC_TT_TypeID;
-                    comboBox1.Text = ccTemplate.CC_TT_TypeName;
+                    comboBox1.DefaultValue = new string[] { ccTemplate.CC_TT_TemplateID };
                     if (string.IsNullOrEmpty(ccTemplate.CC_TT_AEACheckers) == false)
                     {
                         UserDetailDto user = AutofacConfig.userService.GetUserByUserID(ccTemplate.CC_TT_AEACheckers);
                         listAEAChecks.Add(user.U_ID);
-                        comboBox2.Text = ccTemplate.CC_TT_AEACheckers;
+                        comboBox2.DefaultValue = new string[] { ccTemplate.CC_TT_AEACheckers };
                     }
                     if (string.IsNullOrEmpty(ccTemplate.CC_TT_FinancialCheckers) == false)
                     {
                         UserDetailDto user = AutofacConfig.userService.GetUserByUserID(ccTemplate.CC_TT_AEACheckers);
                         listFCheckers.Add(user.U_ID);
-                        comboBox3.Text = ccTemplate.CC_TT_FinancialCheckers;
+                          comboBox3.DefaultValue=new string[] { ccTemplate.CC_TT_FinancialCheckers };
                     }
                     titleLab.Text = "模板编辑";
                 }
@@ -181,7 +179,7 @@ namespace SwebONE.CostCenter
         /// <param name="e"></param>
         private void comboBox1_ValueChanged(object sender, EventArgs e)
         {
-            type = comboBox1.SelectKey;
+            //  type = comboBox1.SelectKey;
         }
 
         /// <summary>
@@ -198,31 +196,29 @@ namespace SwebONE.CostCenter
             {
                 foreach (UserDto user in listUser)
                 {
-
-                    comboBox2.Items.Add(new ComboBoxItem(user.U_ID, user.U_Name));
-                    comboBox3.Items.Add(new ComboBoxItem(user.U_ID, user.U_Name));
+                    comboBox2.Nodes.Add(new TreeSelectNode(user.U_ID, user.U_Name));
+                    comboBox3.Nodes.Add(new TreeSelectNode(user.U_ID, user.U_Name));
                 }
-
             }
         }
 
         private void comboBox2_ValueChanged(object sender, EventArgs e)
         {
-            if (comboBox2.Text != "")
-            {
-                listAEAChecks.Clear();
-                listAEAChecks.Add(comboBox2.SelectKey);
-            }
+            //if (comboBox2.Text != "")
+            //{
+            //    listAEAChecks.Clear();
+            //    listAEAChecks.Add(comboBox2.SelectKey);
+            //}
 
         }
 
         private void comboBox3_ValueChanged(object sender, EventArgs e)
         {
-            if (comboBox3.Text != "")
-            {
-                listFCheckers.Clear();
-                listFCheckers.Add(comboBox3.SelectKey);
-            }
+            //if (comboBox3.Text != "")
+            //{
+            //    listFCheckers.Clear();
+            //    listFCheckers.Add(comboBox3.SelectKey);
+            //}
         }
     }
 }

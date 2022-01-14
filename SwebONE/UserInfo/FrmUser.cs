@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SwebONE.UserInfo
 {
@@ -88,6 +89,8 @@ namespace SwebONE.UserInfo
             try
             {
                 btnEmail.ReadOnly = btnName.ReadOnly = true;
+                dpkBirthday.Enable = false;
+                btnSex.Disabled = true;
                 saveBtn.Visible = cancelBtn.Visible = false;
                 editBtn.Visible = true;
                 UserDetails userDetails = new UserDetails();
@@ -110,10 +113,11 @@ namespace SwebONE.UserInfo
                     switch (sex)
                     {
                         case Sex.男:
-                            btnSex.Text = "男";
+                            btnSex.Tag = "0";
+                            btnSex.DefaultValue = new string[] { "0" };
                             break;
                         case Sex.女:
-                            btnSex.Text = "女";
+                            btnSex.Tag = "1";
                             break;
                     }
                     dpkBirthday.Value = user.U_Birthday;
@@ -135,8 +139,10 @@ namespace SwebONE.UserInfo
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void editBtn_Click(object sender, EventArgs e)
-        {
+        { 
             btnEmail.ReadOnly = btnName.ReadOnly = false;
+            dpkBirthday.Enable = true;
+            btnSex.Disabled = false;
             saveBtn.Visible = cancelBtn.Visible = true;
             editBtn.Visible = false;
         }
@@ -158,12 +164,17 @@ namespace SwebONE.UserInfo
         {
             try
             {
+                Regex RegEmail = new Regex("^[\\w-]+@[\\w-]+\\.(com|net|org|edu|mil|tv|biz|info)$");//w 英文字母或数字的字符串，和 [a-zA-Z0-9] 语法一样 
+                if (RegEmail.Match(btnEmail.Text).Success == false)
+                    throw new Exception("请输入正确的邮箱地址");
                 UserInputDto upuser = new UserInputDto();
                 upuser.U_ID = Client.Session["U_ID"].ToString();
                 upuser.U_Birthday = dpkBirthday.Value;
                 upuser.U_Name = btnName.Text.Trim();
                 upuser.U_Email = btnEmail.Text.Trim();
-                upuser.U_Sex = (Sex)Convert.ToInt32(btnSex.SelectKey);
+                if (btnSex.Tag == null)
+                    throw new Exception("请选择性别");
+                upuser.U_Sex = (Sex)Convert.ToInt32(btnSex.Tag);
                 ReturnInfo result = AutofacConfig.userService.UpdateUser(upuser);
                 //返回结果如果为false，则修改失败
                 if (result.IsSuccess == false)
