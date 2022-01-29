@@ -38,7 +38,6 @@ namespace SwebONE.Attendance
             {
                 Button button = (Button)sender;
                 ChangeTab(button.Text);
-
             }
             catch (Exception ex)
             {
@@ -55,15 +54,19 @@ namespace SwebONE.Attendance
                         panel3.Visible = true;
                         panel4.Visible = false;
                         btnMode = 1;
-                        // this.btnCheck.Text = "";
-                        // btnCheck.Enabled = false;
+                        TabBtn1.BackColor = System.Drawing.Color.FromArgb(78, 137, 248);
+                        TabBtn1.ForeColor = System.Drawing.Color.White;
+                        TabBtn.BackColor = System.Drawing.Color.White;
+                        TabBtn.ForeColor = System.Drawing.Color.DimGray;
                         break;
                     case "天数统计":
                         panel3.Visible = false;
                         panel4.Visible = true;
                         btnMode = 2;
-                        //this.btnCheck.Text = ">";
-                        // btnCheck.Enabled = true;
+                        TabBtn.BackColor = System.Drawing.Color.FromArgb(78, 137, 248);
+                        TabBtn.ForeColor = System.Drawing.Color.White;
+                        TabBtn1.BackColor = System.Drawing.Color.White;
+                        TabBtn1.ForeColor = System.Drawing.Color.DimGray;
                         break;
                 }
                 Bind();
@@ -107,11 +110,8 @@ namespace SwebONE.Attendance
                                 {
                                     table.Rows.Add(User.U_ID, User.U_Portrait, User.U_Name, Stat.MS_AllCount, Stat.MS_InTimeCount, Stat.MS_ComeLateCount, Stat.MS_LeaveEarlyCount, Stat.MS_NoSignInCount + Stat.MS_NoSignOutCount);
                                 }
-
                             }
-
-                            this.gridATdata.DataSource = table;
-                            this.gridATdata.DataBind();
+                            this.gridATdata.Reload(table);
                         }
 
                         break;
@@ -126,14 +126,10 @@ namespace SwebONE.Attendance
                                 string Time = Row.ToString("yyyy年M月d日    dddd", new System.Globalization.CultureInfo("zh-CN"));
                                 table.Rows.Add(Time);
                             }
-
-                            this.gridATdata1.DataSource = table;
-                            this.gridATdata1.DataBind();
-
+                            this.gridATdata1.Reload(table);
                         }
                         break;
                 }
-
             }
             catch (Exception ex)
             {
@@ -146,15 +142,15 @@ namespace SwebONE.Attendance
             try
             {
                 UserID = Client.Session["U_ID"].ToString();
-                this.btnYear.Text = DateTime.Now.Year.ToString();              //年份
-                this.btnMonth.Text = DateTime.Now.Month.ToString();            //月份
+                this.btnYear.DefaultValue = new string[] { DateTime.Now.Year.ToString() };              //年份
+                this.btnMonth.DefaultValue = new string[] { DateTime.Now.Month.ToString() };            //月份
                 for (int i = DateTime.Now.Year; DateTime.Now.Year - i < 10; i--)        //添加年份选择范围
                 {
-                    btnYear.Items.Add(new ComboBoxItem(i.ToString(), i.ToString()));
+                    btnYear.Nodes.Add(new TreeSelectNode(i.ToString(), i.ToString()));
                 }
                 for (int i = 1; i < 13; i++)
                 {
-                    btnMonth.Items.Add(new ComboBoxItem(i.ToString(), i.ToString()));
+                    btnMonth.Nodes.Add(new TreeSelectNode(i.ToString(), i.ToString()));
                 }
                 if (btnMode == 1)
                 {
@@ -166,54 +162,46 @@ namespace SwebONE.Attendance
                     panel3.Visible = false;
                     panel4.Visible = true;
                 }
-                Bind();
-            }
-            catch (Exception ex)
-            {
-                Toast(ex.Message);
-            }
-        }
-        /// <summary>
-        /// 年份选择
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnYear_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (btnYear.SelectKey != null)       //如果选择了年份
-                {
-                    Year = this.btnYear.Text;
-                    Bind();         //重新加载数据
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast(ex.Message);
-            }
-        }
-        /// <summary>
-        /// 月份选择
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnMonth_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (btnMonth.SelectKey != null)     //如果选择了月份
-                {
-                    Month = this.btnMonth.Text;
-                    Bind();
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast(ex.Message);
-            }
-        }
 
+                TabBtn1.BackColor = System.Drawing.Color.FromArgb(78, 137, 248);
+                TabBtn1.ForeColor = System.Drawing.Color.White;
+                #region bind
+                //年份
+                //月份             
+                DataTable table = new DataTable();
+                //获取某月考勤用户数据
+                List<string> Users = AutofacConfig.attendanceService.GetUserNameByPeriod(Convert.ToDateTime(Year + "年" + Month + "月"), Convert.ToDateTime(Year + "年" + Month + "月").AddMonths(1).AddDays(-1));
+                if (Users.Count > 0)
+                {
+                    table.Columns.Add("ID");                //用户ID
+                    table.Columns.Add("Pict");              //用户头像
+                    table.Columns.Add("Name");              //用户名称
+                    table.Columns.Add("Total");             //应签到次数
+                    table.Columns.Add("Al");                //准时签到次数
+                    table.Columns.Add("Late");              //迟到次数
+                    table.Columns.Add("Early");             //早退次数
+                    table.Columns.Add("No");                //未签次数
+                    foreach (string Row in Users)
+                    {
+                        MonthlyStatisticsDto Stat = AutofacConfig.attendanceService.GetUserMonthlyStatistics(Row, Convert.ToDateTime(Year + "年" + Month + "月"));
+                        UserDetails UserDetail = new UserDetails();
+                        UserDetailDto User = UserDetail.getUser(Row);
+                        if (User != null)
+                        {
+                            table.Rows.Add(User.U_ID, User.U_Portrait, User.U_Name, Stat.MS_AllCount, Stat.MS_InTimeCount, Stat.MS_ComeLateCount, Stat.MS_LeaveEarlyCount, Stat.MS_NoSignInCount + Stat.MS_NoSignOutCount);
+                        }
+
+                    }
+                    this.gridATdata.DataSource = table;
+                    this.gridATdata.DataBind();
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message);
+            }
+        }
         private void gridATdata1_RowClick(object sender, GridViewRowClickEventArgs e)
         {
             try
@@ -229,6 +217,41 @@ namespace SwebONE.Attendance
             catch (Exception ex)
             {
                 this.Form.Toast(ex.Message);
+            }
+        }
+        /// <summary>
+        /// 年份选择
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnYear_Press(object sender, TreeSelectPressEventArgs args)
+        {
+
+            try
+            {
+                Year = args.TreeID;
+                Bind();
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message);
+            }
+        }
+        /// <summary>
+        /// 月份选择
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMonth_Press(object sender, TreeSelectPressEventArgs args)
+        {
+            try
+            {
+                Month = args.TreeID;
+                Bind();
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message);
             }
         }
     }

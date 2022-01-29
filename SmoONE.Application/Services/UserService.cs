@@ -705,6 +705,10 @@ namespace SmoONE.Application
                             {
                                 u.U_Gestures = entity.U_Gestures;
                             }
+                            if (entity.U_Tel != null)
+                            {
+                                u.U_Tel = entity.U_Tel;
+                            }
                             #endregion
                             _unitOfWork.RegisterDirty(u);
                             bool result = _unitOfWork.Commit();
@@ -715,7 +719,11 @@ namespace SmoONE.Application
                         catch (Exception ex)
                         {
                             _unitOfWork.RegisterClean(u);
-                            _unitOfWork.Rollback();
+                            try { _unitOfWork.Rollback();}
+                            catch(Exception e)
+                            {
+
+                            }
                             sb.Append(ex.Message);
                             RInfo.IsSuccess = false;
                             RInfo.ErrorInfo = sb.ToString();

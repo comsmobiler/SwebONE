@@ -156,33 +156,47 @@ namespace SwebONE.CostCenter
             // 
             this.comboBox1.Border = new Swebui.Controls.Border(1F);
             this.comboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.comboBox1.DefaultValue = new string[0];
+            this.comboBox1.DropDownHeight = 280;
             this.comboBox1.Flex = 1;
+            this.comboBox1.ListBackgroundColor = System.Drawing.Color.White;
             this.comboBox1.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Placeholder = "";
             this.comboBox1.Size = new System.Drawing.Size(100, 35);
+            this.comboBox1.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox1_Press);
             // 
             // comboBox2
             // 
             this.comboBox2.Border = new Swebui.Controls.Border(1F);
             this.comboBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.comboBox2.DefaultValue = new string[0];
+            this.comboBox2.DropDownHeight = 280;
             this.comboBox2.Flex = 1;
+            this.comboBox2.ListBackgroundColor = System.Drawing.Color.White;
             this.comboBox2.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
+            this.comboBox2.Multiple = true;
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Placeholder = "";
+            this.comboBox2.Placeholder = "请选择1-4审批人";
             this.comboBox2.Size = new System.Drawing.Size(100, 35);
- 
+            this.comboBox2.TagBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
+            this.comboBox2.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox2_Press);
             // 
             // comboBox3
             // 
             this.comboBox3.Border = new Swebui.Controls.Border(1F);
             this.comboBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.comboBox3.DefaultValue = new string[0];
+            this.comboBox3.DropDownHeight = 280;
             this.comboBox3.Flex = 1;
+            this.comboBox3.ListBackgroundColor = System.Drawing.Color.White;
             this.comboBox3.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
+            this.comboBox3.Multiple = true;
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Placeholder = "";
+            this.comboBox3.Placeholder = "请选择1-4审批人";
             this.comboBox3.Size = new System.Drawing.Size(100, 35);
-              // 
+            this.comboBox3.TagBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
+            this.comboBox3.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox3_Press);
+            // 
             // FrmCCTemplateCreate
             // 
             this.BackColor = System.Drawing.Color.White;

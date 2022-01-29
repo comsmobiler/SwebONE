@@ -29,30 +29,24 @@ namespace SwebONE.Leave
             this.label3 = new Swebui.Controls.Label();
             this.label4 = new Swebui.Controls.Label();
             this.panel4 = new Swebui.Controls.Panel();
-            this.btnType = new Swebui.Controls.ComboBox();
+            this.btnType = new Swebui.Controls.TreeSelect();
             this.dpkStartDate = new Swebui.Controls.DatePicker();
             this.dpkEndDate = new Swebui.Controls.DatePicker();
             this.panel5 = new Swebui.Controls.Panel();
             this.label5 = new Swebui.Controls.Label();
             this.label6 = new Swebui.Controls.Label();
-            this.label7 = new Swebui.Controls.Label();
+            this.label11 = new Swebui.Controls.Label();
             this.panel6 = new Swebui.Controls.Panel();
             this.txtLday = new Swebui.Controls.TextBox();
             this.txtReason = new Swebui.Controls.TextBox();
-            this.label14 = new Swebui.Controls.Label();
+            this.comboBox2 = new Swebui.Controls.TreeSelect();
             this.panel9 = new Swebui.Controls.Panel();
-            this.label11 = new Swebui.Controls.Label();
             this.label12 = new Swebui.Controls.Label();
+            this.label7 = new Swebui.Controls.Label();
             this.label13 = new Swebui.Controls.Label();
             this.panel10 = new Swebui.Controls.Panel();
-            this.comboBox2 = new Swebui.Controls.ComboBox();
-            this.comboBox3 = new Swebui.Controls.ComboBox();
-            this.label15 = new Swebui.Controls.Label();
-            this.panel7 = new Swebui.Controls.Panel();
-            this.label8 = new Swebui.Controls.Label();
-            this.label9 = new Swebui.Controls.Label();
-            this.label10 = new Swebui.Controls.Label();
-            this.panel8 = new Swebui.Controls.Panel();
+            this.comboBox3 = new Swebui.Controls.TreeSelect();
+            this.label14 = new Swebui.Controls.Panel();
             this.imgL = new Swebui.Controls.Image();
             this.panel11 = new Swebui.Controls.Panel();
             this.button1 = new Swebui.Controls.Button();
@@ -181,14 +175,14 @@ namespace SwebONE.Leave
             // 
             this.btnType.Border = new Swebui.Controls.Border(1F);
             this.btnType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.btnType.DefaultValue = new string[0];
+            this.btnType.DropDownHeight = 280;
             this.btnType.Flex = 1;
+            this.btnType.ListBackgroundColor = System.Drawing.Color.White;
             this.btnType.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.btnType.Name = "btnType";
-            this.btnType.Placeholder = "";
-            this.btnType.PopupHeight = 0;
             this.btnType.Size = new System.Drawing.Size(100, 0);
-            this.btnType.Text = "";
-            this.btnType.ValueChanged += new System.EventHandler(this.btnType_ValueChanged);
+            this.btnType.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnType_Press);
             // 
             // dpkStartDate
             // 
@@ -197,7 +191,6 @@ namespace SwebONE.Leave
             this.dpkStartDate.Flex = 1;
             this.dpkStartDate.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.dpkStartDate.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
-            this.dpkStartDate.MinDate = new System.DateTime(((long)(0)));
             this.dpkStartDate.Name = "dpkStartDate";
             this.dpkStartDate.Size = new System.Drawing.Size(100, 0);
             this.dpkStartDate.Value = new System.DateTime(2021, 10, 25, 10, 39, 36, 17);
@@ -209,7 +202,6 @@ namespace SwebONE.Leave
             this.dpkEndDate.Flex = 1;
             this.dpkEndDate.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.dpkEndDate.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
-            this.dpkEndDate.MinDate = new System.DateTime(((long)(0)));
             this.dpkEndDate.Name = "dpkEndDate";
             this.dpkEndDate.Size = new System.Drawing.Size(100, 0);
             this.dpkEndDate.Value = new System.DateTime(2021, 10, 25, 10, 39, 37, 706);
@@ -219,7 +211,7 @@ namespace SwebONE.Leave
             this.panel5.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.label5,
             this.label6,
-            this.label7});
+            this.label11});
             this.panel5.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel5.Margin = new Swebui.Controls.Margin(10F, 10F, 10F, 0F);
             this.panel5.Name = "panel5";
@@ -246,21 +238,22 @@ namespace SwebONE.Leave
             this.label6.Text = "请假事由";
             this.label6.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
-            // label7
+            // label11
             // 
-            this.label7.Flex = 1;
-            this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 0);
-            this.label7.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            this.label11.Flex = 1;
+            this.label11.ForeColor = System.Drawing.Color.Silver;
+            this.label11.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(100, 0);
+            this.label11.Text = "审核人";
+            this.label11.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
             // panel6
             // 
             this.panel6.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.txtLday,
             this.txtReason,
-            this.label14});
+            this.comboBox2});
             this.panel6.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel6.Margin = new Swebui.Controls.Margin(10F, 0F, 10F, 0F);
             this.panel6.Name = "panel6";
@@ -285,18 +278,27 @@ namespace SwebONE.Leave
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(100, 0);
             // 
-            // label14
+            // comboBox2
             // 
-            this.label14.Flex = 1;
-            this.label14.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(100, 0);
+            this.comboBox2.Border = new Swebui.Controls.Border(1F);
+            this.comboBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.comboBox2.DefaultValue = new string[0];
+            this.comboBox2.DropDownHeight = 280;
+            this.comboBox2.Flex = 1;
+            this.comboBox2.ListBackgroundColor = System.Drawing.Color.White;
+            this.comboBox2.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
+            this.comboBox2.Multiple = true;
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Placeholder = "请选择1-4审核人";
+            this.comboBox2.Size = new System.Drawing.Size(100, 0);
+            this.comboBox2.TagBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
+            this.comboBox2.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox2_Press);
             // 
             // panel9
             // 
             this.panel9.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.label11,
             this.label12,
+            this.label7,
             this.label13});
             this.panel9.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel9.Margin = new Swebui.Controls.Margin(10F, 10F, 10F, 0F);
@@ -304,25 +306,25 @@ namespace SwebONE.Leave
             this.panel9.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
             this.panel9.Size = new System.Drawing.Size(0, 30);
             // 
-            // label11
-            // 
-            this.label11.Flex = 1;
-            this.label11.ForeColor = System.Drawing.Color.Silver;
-            this.label11.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 0);
-            this.label11.Text = "审核人";
-            this.label11.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
-            // 
             // label12
             // 
             this.label12.Flex = 1;
             this.label12.ForeColor = System.Drawing.Color.Silver;
-            this.label12.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
+            this.label12.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 0);
             this.label12.Text = "抄送人";
             this.label12.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.Flex = 1;
+            this.label7.ForeColor = System.Drawing.Color.Silver;
+            this.label7.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(100, 0);
+            this.label7.Text = "图片";
+            this.label7.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
             // label13
             // 
@@ -335,102 +337,45 @@ namespace SwebONE.Leave
             // panel10
             // 
             this.panel10.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.comboBox2,
             this.comboBox3,
-            this.label15});
+            this.label14});
             this.panel10.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel10.Margin = new Swebui.Controls.Margin(10F, 0F, 10F, 0F);
             this.panel10.Name = "panel10";
             this.panel10.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
-            this.panel10.Size = new System.Drawing.Size(0, 35);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Border = new Swebui.Controls.Border(1F);
-            this.comboBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.comboBox2.Flex = 1;
-            this.comboBox2.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Placeholder = "";
-            this.comboBox2.PopupHeight = 0;
-            this.comboBox2.Size = new System.Drawing.Size(100, 0);
-            this.comboBox2.Text = "";
-            this.comboBox2.ValueChanged += new System.EventHandler(this.comboBox2_ValueChanged);
+            this.panel10.Size = new System.Drawing.Size(0, 130);
             // 
             // comboBox3
             // 
             this.comboBox3.Border = new Swebui.Controls.Border(1F);
             this.comboBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.comboBox3.DefaultValue = new string[0];
+            this.comboBox3.DropDownHeight = 280;
             this.comboBox3.Flex = 1;
-            this.comboBox3.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
+            this.comboBox3.ListBackgroundColor = System.Drawing.Color.White;
+            this.comboBox3.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
+            this.comboBox3.Multiple = true;
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Placeholder = "";
-            this.comboBox3.PopupHeight = 0;
-            this.comboBox3.Size = new System.Drawing.Size(100, 0);
-            this.comboBox3.Text = "";
-            this.comboBox3.ValueChanged += new System.EventHandler(this.comboBox3_ValueChanged);
+            this.comboBox3.Placeholder = "请选择0-4个抄送人";
+            this.comboBox3.Size = new System.Drawing.Size(100, 35);
+            this.comboBox3.TagBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
+            this.comboBox3.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox3_Press);
             // 
-            // label15
+            // label14
             // 
-            this.label15.Flex = 1;
-            this.label15.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(100, 0);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.label8,
-            this.label9,
-            this.label10});
-            this.panel7.Direction = Swebui.Controls.LayoutDirection.Row;
-            this.panel7.Margin = new Swebui.Controls.Margin(10F, 10F, 10F, 0F);
-            this.panel7.Name = "panel7";
-            this.panel7.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
-            this.panel7.Size = new System.Drawing.Size(0, 30);
-            // 
-            // label8
-            // 
-            this.label8.Flex = 1;
-            this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 0);
-            this.label8.Text = "图片";
-            this.label8.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
-            // 
-            // label9
-            // 
-            this.label9.Flex = 1;
-            this.label9.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 0);
-            // 
-            // label10
-            // 
-            this.label10.Flex = 1;
-            this.label10.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(100, 0);
-            this.label10.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.label14.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.imgL,
             this.panel11});
-            this.panel8.Flex = 1;
-            this.panel8.ItemAlign = Swebui.Controls.LayoutItemAlign.FlexStart;
-            this.panel8.Margin = new Swebui.Controls.Margin(10F, 0F, 10F, 0F);
-            this.panel8.Name = "panel8";
-            this.panel8.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
-            this.panel8.Size = new System.Drawing.Size(0, 0);
+            this.label14.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.label14.Flex = 2;
+            this.label14.Margin = new Swebui.Controls.Margin(5F, 0F, 15F, 0F);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(100, 0);
             // 
             // imgL
             // 
             this.imgL.Border = new Swebui.Controls.Border(1F);
             this.imgL.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.imgL.Margin = new Swebui.Controls.Margin(0F, 5F, 0F, 0F);
             this.imgL.Name = "imgL";
             this.imgL.ResourceID = "";
             this.imgL.Size = new System.Drawing.Size(212, 100);
@@ -441,12 +386,11 @@ namespace SwebONE.Leave
             this.panel11.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.button1,
             this.button2});
-            this.panel11.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel11.ItemAlign = Swebui.Controls.LayoutItemAlign.FlexStart;
             this.panel11.JustifyAlign = Swebui.Controls.LayoutJustifyAlign.SpaceAround;
             this.panel11.Margin = new Swebui.Controls.Margin(0F, 10F, 0F, 0F);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(212, 26);
+            this.panel11.Size = new System.Drawing.Size(92, 80);
             // 
             // button1
             // 
@@ -485,9 +429,7 @@ namespace SwebONE.Leave
             this.panel5,
             this.panel6,
             this.panel9,
-            this.panel10,
-            this.panel7,
-            this.panel8});
+            this.panel10});
             this.Load += new System.EventHandler(this.FrmLeaveCreate_Load);
 
         }
@@ -503,13 +445,12 @@ namespace SwebONE.Leave
         private Label label3;
         private Label label4;
         private Panel panel4;
-        private ComboBox btnType;
+        private TreeSelect btnType;
         private DatePicker dpkStartDate;
         private DatePicker dpkEndDate;
         private Panel panel5;
         private Label label5;
         private Label label6;
-        private Label label7;
         private Panel panel6;
         private Panel panel9;
         private Label label11;
@@ -518,15 +459,10 @@ namespace SwebONE.Leave
         private Panel panel10;
         private TextBox txtLday;
         private TextBox txtReason;
-        private Label label14;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private Label label15;
-        private Panel panel7;
-        private Label label8;
-        private Label label9;
-        private Label label10;
-        private Panel panel8;
+        private TreeSelect comboBox2;
+        private TreeSelect comboBox3;
+        private Label label7;
+        private Panel label14;
         private Image imgL;
         private Panel panel11;
         private Button button1;

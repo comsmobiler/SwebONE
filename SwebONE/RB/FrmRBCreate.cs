@@ -181,7 +181,7 @@ namespace SwebONE.RB
                 {
                     foreach (CCDto cc in listCC)
                     {
-                        comboBox1.Items.Add(new ComboBoxItem(cc.CC_ID, cc.CC_Name));
+                        comboBox1.Nodes.Add(new TreeSelectNode(cc.CC_ID, cc.CC_Name));
                     }
 
                 }
@@ -190,8 +190,7 @@ namespace SwebONE.RB
                 {
                     lblRBNO.Text = RBID;
                     RBDetailDto rBDetailDto = AutofacConfig.rBService.GetByID(RBID);
-                    CCDetailDto cCDetailDto = AutofacConfig.costCenterService.GetCCByID(rBDetailDto.CC_ID);
-                    comboBox1.Text = cCDetailDto.CC_Name;
+                    comboBox1.DefaultValue =new string[] { rBDetailDto.CC_ID };
                     TxtNote.Text = rBDetailDto.RB_Note;
                     RBCC = rBDetailDto.CC_ID;
                     titleLab.Text = "报销编辑";
@@ -209,15 +208,13 @@ namespace SwebONE.RB
             }
         }
         /// <summary>
-        /// 成本中心选择
+        /// 成本中心选择事件
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBox1_ValueChanged(object sender, EventArgs e)
+        /// <param name="args"></param>
+        private void comboBox1_Press(object sender, TreeSelectPressEventArgs args)
         {
-            if (comboBox1.SelectKey != null)
-                RBCC = comboBox1.SelectKey;
-
+            RBCC = args.TreeID;
         }
     }
 }

@@ -27,6 +27,11 @@ namespace SwebONE
         #region "definition"
         AutofacConfig AutofacConfig = new AutofacConfig();//调用配置类
         #endregion
+        /// <summary>
+        /// 页面初始化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
             //获取登录账号信息
@@ -40,6 +45,13 @@ namespace SwebONE
             MenuValueChanged(menuView1.Items[0]);
             menuView1.DefaultSelectedItem=menuView1.Items[0];
         }
+        public void　SetUserName(string name) {
+            useBtn.Text = name;
+        
+      }
+        /// <summary>
+        /// 获取Menu
+        /// </summary>
         private void GetMenu()
         {
             try
@@ -75,10 +87,20 @@ namespace SwebONE
             }
 
         }
+
+        /// <summary>
+        /// MenuView 点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuView1_MenuItemClick(object sender, MenuViewItemClickEventArgs e)
         {
             MenuValueChanged(e.Item);
         }
+        /// <summary>
+        /// 设置MenuView默认选中项
+        /// </summary>
+        /// <param name="menuItem"></param>
         public void SetMenuViewSeleccted(MenuItem menuItem)
         {
             foreach (MenuItem item in menuView1.Items)
@@ -101,6 +123,10 @@ namespace SwebONE
             }
           
         }
+        /// <summary>
+        /// 切换tab
+        /// </summary>
+        /// <param name="menuItem"></param>
         public void MenuValueChanged(MenuItem menuItem)
         {
             switch (menuItem.Id)
@@ -163,7 +189,11 @@ namespace SwebONE
                     break;
             }
         }
-
+        /// <summary>
+        /// tabpageview 添加或跳转tab
+        /// </summary>
+        /// <param name="menuItem"></param>
+        /// <param name="menuControl"></param>
         private void AddTabPage(MenuItem menuItem, SwebControl menuControl)
         {
             TabPageControl existTagControl = (TabPageControl)this.tabPageView1.Controls.Find(menuItem.Id);
@@ -189,6 +219,11 @@ namespace SwebONE
             }
 
         }
+        /// <summary>
+        /// 退出按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitBtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("是否退出当前系统？", MessageBoxButtons.YesNo, (object o, MessageBoxHandlerArgs args) =>

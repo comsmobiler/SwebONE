@@ -103,7 +103,6 @@ namespace SwebONE
             this.menuView1.DefaultIcon = "tasks";
             this.menuView1.Name = "menuView1";
             this.menuView1.Size = new System.Drawing.Size(200, 0);
-            this.menuView1.Theme = Swebui.Controls.MenuViewTheme.Dark;
             this.menuView1.MenuItemClick += new Swebui.Controls.MenuViewItemClickEventHandler(this.menuView1_MenuItemClick);
             // 
             // tabPageView1

@@ -31,9 +31,9 @@ namespace SwebONE.Attendance
             this.panel2 = new Swebui.Controls.Panel();
             this.TabBtn1 = new Swebui.Controls.Button();
             this.TabBtn = new Swebui.Controls.Button();
-            this.btnYear = new Swebui.Controls.ComboBox();
+            this.btnYear = new Swebui.Controls.TreeSelect();
             this.label3 = new Swebui.Controls.Label();
-            this.btnMonth = new Swebui.Controls.ComboBox();
+            this.btnMonth = new Swebui.Controls.TreeSelect();
             this.label2 = new Swebui.Controls.Label();
             this.panel3 = new Swebui.Controls.Panel();
             this.gridATdata = new Swebui.Controls.GridView();
@@ -89,7 +89,7 @@ namespace SwebONE.Attendance
             this.TabBtn1.Name = "TabBtn1";
             this.TabBtn1.NumberOfLines = 0;
             this.TabBtn1.Padding = new Swebui.Controls.Padding(10F, 0F, 10F, 0F);
-            this.TabBtn1.Size = new System.Drawing.Size(0, 26);
+            this.TabBtn1.Size = new System.Drawing.Size(0, 35);
             this.TabBtn1.Text = "人员统计";
             this.TabBtn1.Click += new System.EventHandler(this.TabBtn1_Click);
             // 
@@ -103,21 +103,24 @@ namespace SwebONE.Attendance
             this.TabBtn.Name = "TabBtn";
             this.TabBtn.NumberOfLines = 0;
             this.TabBtn.Padding = new Swebui.Controls.Padding(10F, 0F, 10F, 0F);
-            this.TabBtn.Size = new System.Drawing.Size(0, 26);
+            this.TabBtn.Size = new System.Drawing.Size(0, 35);
             this.TabBtn.Text = "天数统计";
             this.TabBtn.Click += new System.EventHandler(this.TabBtn1_Click);
             // 
             // btnYear
             // 
+            this.btnYear.Border = new Swebui.Controls.Border(1F);
+            this.btnYear.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.btnYear.DefaultValue = new string[0];
+            this.btnYear.DropDownHeight = 280;
+            this.btnYear.ListBackgroundColor = System.Drawing.Color.White;
             this.btnYear.Name = "btnYear";
-            this.btnYear.Placeholder = "";
-            this.btnYear.PopupHeight = 0;
             this.btnYear.Size = new System.Drawing.Size(100, 35);
-            this.btnYear.Text = "";
-            this.btnYear.ValueChanged += new System.EventHandler(this.btnYear_ValueChanged);
+            this.btnYear.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnYear_Press);
             // 
             // label3
             // 
+            this.label3.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 28);
             this.label3.Text = "年";
@@ -125,15 +128,18 @@ namespace SwebONE.Attendance
             // 
             // btnMonth
             // 
+            this.btnMonth.Border = new Swebui.Controls.Border(1F);
+            this.btnMonth.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.btnMonth.DefaultValue = new string[0];
+            this.btnMonth.DropDownHeight = 280;
+            this.btnMonth.ListBackgroundColor = System.Drawing.Color.White;
             this.btnMonth.Name = "btnMonth";
-            this.btnMonth.Placeholder = "";
-            this.btnMonth.PopupHeight = 0;
             this.btnMonth.Size = new System.Drawing.Size(100, 35);
-            this.btnMonth.Text = "";
-            this.btnMonth.ValueChanged += new System.EventHandler(this.btnMonth_ValueChanged);
+            this.btnMonth.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnMonth_Press);
             // 
             // label2
             // 
+            this.label2.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 28);
             this.label2.Text = "月";
@@ -222,9 +228,9 @@ namespace SwebONE.Attendance
         private GridView gridATdata;
         private Panel panel4;
         private GridView gridATdata1;
-        private ComboBox btnYear;
+        private TreeSelect btnYear;
         private Label label3;
-        private ComboBox btnMonth;
+        private TreeSelect btnMonth;
         private Label label2;
     }
 }

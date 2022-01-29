@@ -196,7 +196,7 @@ namespace SwebONE
             this.button2.SelectBackgroundColor = System.Drawing.Color.Transparent;
             this.button2.SelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
             this.button2.Size = new System.Drawing.Size(99, 0);
-            this.button2.Text = "验证码登录";
+            this.button2.Text = "演示账号";
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3

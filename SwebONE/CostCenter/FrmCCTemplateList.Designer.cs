@@ -30,7 +30,6 @@ namespace SwebONE.CostCenter
             this.EditBtn = new Swebui.Controls.Button();
             this.RefreshBtn = new Swebui.Controls.Button();
             this.gridView1 = new Swebui.Controls.GridView();
-            this.lblInfor = new Swebui.Controls.Label();
             // 
             // panel1
             // 
@@ -136,25 +135,13 @@ namespace SwebONE.CostCenter
             this.gridView1.RowWidth = 0;
             this.gridView1.Size = new System.Drawing.Size(0, 30);
             // 
-            // lblInfor
-            // 
-            this.lblInfor.ForeColor = System.Drawing.Color.Silver;
-            this.lblInfor.HorizontalAlignment = Swebui.Controls.HorizontalAlignment.Center;
-            this.lblInfor.Margin = new Swebui.Controls.Margin(10F, 0F, 10F, 0F);
-            this.lblInfor.Name = "lblInfor";
-            this.lblInfor.Size = new System.Drawing.Size(0, 35);
-            this.lblInfor.Text = "当前暂无成本中心，请创建！";
-            this.lblInfor.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
-            this.lblInfor.Visible = false;
-            // 
             // FrmCCTemplateList
             // 
             this.BackColor = System.Drawing.Color.White;
             this.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.panel1,
             this.panel2,
-            this.gridView1,
-            this.lblInfor});
+            this.gridView1});
             this.Load += new System.EventHandler(this.FrmCCTemplateList_Load);
 
         }
@@ -167,6 +154,5 @@ namespace SwebONE.CostCenter
         private Button EditBtn;
         private Button RefreshBtn;
         private GridView gridView1;
-        private Label lblInfor;
     }
 }

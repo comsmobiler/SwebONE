@@ -31,7 +31,7 @@ namespace SwebONE.CostCenter
             this.label4 = new Swebui.Controls.Label();
             this.panel4 = new Swebui.Controls.Panel();
             this.txtCC_Name = new Swebui.Controls.TextBox();
-            this.btnType = new Swebui.Controls.ComboBox();
+            this.btnType = new Swebui.Controls.TreeSelect();
             this.dpkStartDate = new Swebui.Controls.DatePicker();
             this.panel5 = new Swebui.Controls.Panel();
             this.label5 = new Swebui.Controls.Label();
@@ -40,7 +40,7 @@ namespace SwebONE.CostCenter
             this.panel6 = new Swebui.Controls.Panel();
             this.dpkEndDate = new Swebui.Controls.DatePicker();
             this.txtAmount = new Swebui.Controls.TextBox();
-            this.btnLiableMan = new Swebui.Controls.ComboBox();
+            this.btnLiableMan = new Swebui.Controls.TreeSelect();
             this.panel7 = new Swebui.Controls.Panel();
             this.label8 = new Swebui.Controls.Label();
             this.label9 = new Swebui.Controls.Label();
@@ -200,14 +200,14 @@ namespace SwebONE.CostCenter
             // 
             this.btnType.Border = new Swebui.Controls.Border(1F);
             this.btnType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.btnType.DefaultValue = new string[0];
+            this.btnType.DropDownHeight = 280;
             this.btnType.Flex = 1;
+            this.btnType.ListBackgroundColor = System.Drawing.Color.White;
             this.btnType.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.btnType.Name = "btnType";
-            this.btnType.Placeholder = "";
-            this.btnType.PopupHeight = 0;
             this.btnType.Size = new System.Drawing.Size(100, 0);
-            this.btnType.Text = "";
-            this.btnType.ValueChanged += new System.EventHandler(this.btnType_ValueChanged);
+            this.btnType.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnType_Press);
             // 
             // dpkStartDate
             // 
@@ -216,7 +216,6 @@ namespace SwebONE.CostCenter
             this.dpkStartDate.Flex = 1;
             this.dpkStartDate.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.dpkStartDate.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
-            this.dpkStartDate.MinDate = new System.DateTime(((long)(0)));
             this.dpkStartDate.Name = "dpkStartDate";
             this.dpkStartDate.Size = new System.Drawing.Size(100, 0);
             this.dpkStartDate.Value = new System.DateTime(2021, 11, 3, 17, 26, 5, 69);
@@ -283,7 +282,6 @@ namespace SwebONE.CostCenter
             this.dpkEndDate.Flex = 1;
             this.dpkEndDate.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.dpkEndDate.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
-            this.dpkEndDate.MinDate = new System.DateTime(((long)(0)));
             this.dpkEndDate.Name = "dpkEndDate";
             this.dpkEndDate.Size = new System.Drawing.Size(100, 0);
             this.dpkEndDate.Value = new System.DateTime(2021, 11, 5, 15, 26, 48, 729);
@@ -301,14 +299,14 @@ namespace SwebONE.CostCenter
             // 
             this.btnLiableMan.Border = new Swebui.Controls.Border(1F);
             this.btnLiableMan.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.btnLiableMan.DefaultValue = new string[0];
+            this.btnLiableMan.DropDownHeight = 280;
             this.btnLiableMan.Flex = 1;
+            this.btnLiableMan.ListBackgroundColor = System.Drawing.Color.White;
             this.btnLiableMan.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.btnLiableMan.Name = "btnLiableMan";
-            this.btnLiableMan.Placeholder = "";
-            this.btnLiableMan.PopupHeight = 0;
             this.btnLiableMan.Size = new System.Drawing.Size(0, 35);
-            this.btnLiableMan.Text = "";
-            this.btnLiableMan.ValueChanged += new System.EventHandler(this.btnLiableMan_ValueChanged);
+            this.btnLiableMan.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnLiableMan_Press);
             // 
             // panel7
             // 
@@ -366,12 +364,11 @@ namespace SwebONE.CostCenter
             // 
             // lblDep
             // 
-            this.lblDep.Border = new Swebui.Controls.Border(1F);
-            this.lblDep.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.lblDep.Flex = 1;
             this.lblDep.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.lblDep.Name = "lblDep";
             this.lblDep.Size = new System.Drawing.Size(100, 0);
+            this.lblDep.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
             // btnTemplate
             // 
@@ -422,7 +419,7 @@ namespace SwebONE.CostCenter
         private Label label4;
         private Panel panel4;
         private TextBox txtCC_Name;
-        private ComboBox btnType;
+        private TreeSelect btnType;
         private DatePicker dpkStartDate;
         private Panel panel5;
         private Label label5;
@@ -436,7 +433,7 @@ namespace SwebONE.CostCenter
         private Panel panel8;
         private DatePicker dpkEndDate;
         private TextBox txtAmount;
-        private ComboBox btnLiableMan;
+        private TreeSelect btnLiableMan;
         private Label lblDep;
         private Button btnTemplate;
         private Label label11;

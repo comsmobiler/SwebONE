@@ -61,7 +61,8 @@ namespace SwebONE.Layout
             this.button1.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.button1.Name = "button1";
             this.button1.NumberOfLines = 0;
-            this.button1.Size = new System.Drawing.Size(39, 41);
+            this.button1.Size = new System.Drawing.Size(0, 30);
+            this.button1.Text = "关闭";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listView1

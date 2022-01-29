@@ -34,7 +34,7 @@ namespace SwebONE.Department
             this.image1 = new Swebui.Controls.Image();
             this.button1 = new Swebui.Controls.Button();
             this.txtDep_Name = new Swebui.Controls.TextBox();
-            this.comboBox1 = new Swebui.Controls.ComboBox();
+            this.comboBox1 = new Swebui.Controls.TreeSelect();
             this.panel5 = new Swebui.Controls.Panel();
             this.panel10 = new Swebui.Controls.Panel();
             this.label8 = new Swebui.Controls.Label();
@@ -231,14 +231,14 @@ namespace SwebONE.Department
             // 
             this.comboBox1.Border = new Swebui.Controls.Border(1F);
             this.comboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.comboBox1.DefaultValue = new string[0];
+            this.comboBox1.DropDownHeight = 280;
             this.comboBox1.Flex = 1;
+            this.comboBox1.ListBackgroundColor = System.Drawing.Color.White;
             this.comboBox1.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Placeholder = "";
-            this.comboBox1.PopupHeight = 0;
             this.comboBox1.Size = new System.Drawing.Size(100, 35);
-            this.comboBox1.Text = "";
-            this.comboBox1.ValueChanged += new System.EventHandler(this.comboBox1_ValueChanged);
+            this.comboBox1.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox1_Press);
             // 
             // panel5
             // 
@@ -386,7 +386,7 @@ namespace SwebONE.Department
         private Label label5;
         private Panel panel6;
         private TextBox txtDep_Name;
-        private ComboBox comboBox1;
+        private TreeSelect comboBox1;
         private Button BackBtn;
         private Button SaveBtn;
         private Button DeleteBtn;

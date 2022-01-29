@@ -105,6 +105,7 @@ namespace SwebONE.Work
             this.dateLab});
             this.panel5.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel5.Flex = 1;
+            this.panel5.ItemAlign = Swebui.Controls.LayoutItemAlign.Center;
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(337, 20);
             // 
@@ -114,16 +115,17 @@ namespace SwebONE.Work
             this.weekLab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.weekLab.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.weekLab.Name = "weekLab";
-            this.weekLab.Size = new System.Drawing.Size(0, 0);
-            this.weekLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            this.weekLab.Size = new System.Drawing.Size(0, 30);
+            this.weekLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Bottom;
             // 
             // dateLab
             // 
             this.dateLab.FontSize = 20F;
             this.dateLab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.dateLab.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.dateLab.Name = "dateLab";
-            this.dateLab.Size = new System.Drawing.Size(0, 0);
-            this.dateLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            this.dateLab.Size = new System.Drawing.Size(0, 30);
+            this.dateLab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Bottom;
             // 
             // panel2
             // 

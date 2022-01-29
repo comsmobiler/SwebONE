@@ -886,6 +886,14 @@ namespace SmoONE.Application
                         {
                             at.AT_PMStartTime = entity.AT_PMStartTime;
                         }
+                        if (entity.AT_StartTime != null)
+                        {
+                            at.AT_StartTime = entity.AT_StartTime;
+                        }
+                        if(entity.AT_EndTime!=null)
+                        {
+                            at.AT_EndTime = entity.AT_EndTime;
+                        }
                         at.AT_Positions = entity.AT_Positions;
                         at.AT_CommutingType = entity.AT_CommutingType.ToString();
                         at.AT_UpdateDate = DateTime.Now;

@@ -19,6 +19,8 @@ namespace SwebONE.Layout
         [System.Diagnostics.DebuggerStepThrough()]
         private void InitializeComponent()
         {
+            Swebui.Controls.GridViewColumn gridViewColumn1 = new Swebui.Controls.GridViewColumn();
+            Swebui.Controls.GridViewColumn gridViewColumn2 = new Swebui.Controls.GridViewColumn();
             this.panel1 = new Swebui.Controls.Panel();
             this.titleLab = new Swebui.Controls.Label();
             this.panel2 = new Swebui.Controls.Panel();
@@ -61,7 +63,15 @@ namespace SwebONE.Layout
             // 
             // gridView1
             // 
+            this.gridView1.AllowFiltering = true;
             this.gridView1.AllowPaging = true;
+            gridViewColumn1.DisplayMember = "AT_CD_Date";
+            gridViewColumn1.HeaderText = "日期";
+            gridViewColumn2.DisplayMember = "AT_CD_CDType";
+            gridViewColumn2.HeaderText = "考勤安排";
+            this.gridView1.Columns.AddRange(new Swebui.Controls.GridViewColumn[] {
+            gridViewColumn1,
+            gridViewColumn2});
             this.gridView1.DataSource = null;
             this.gridView1.Flex = 1;
             this.gridView1.Name = "gridView1";

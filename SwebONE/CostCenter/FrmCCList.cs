@@ -19,21 +19,24 @@ namespace SwebONE.CostCenter
         #region "definition"
         AutofacConfig AutofacConfig = new AutofacConfig();//调用配置类
         #endregion
-        private void AddBtn_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Add(new FrmCCCreate() { Flex = 1 });
-            this.Parent.Controls.RemoveAt(0);
-        }
-
-        private void RefreshBtn_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Add(new FrmCCList() { Flex = 1 });
-            this.Parent.Controls.RemoveAt(0);
-        }
+        /// <summary>
+        /// 页面初始化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void FrmCCList_Load(object sender, EventArgs e)
         {
-            Bind();
+            try
+            {
+                Bind();
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message);
+            }
+
+
         }
         /// <summary>
         /// 初始化方法
@@ -42,26 +45,48 @@ namespace SwebONE.CostCenter
         {
             //获取所有成本中心数据
             List<CCDto> listCC = AutofacConfig.costCenterService.GetAllCC();
-
-          
             if (listCC.Count > 0)
             {
                 foreach (CCDto cc in listCC)
                 {
                     UserDetailDto user = AutofacConfig.userService.GetUserByUserID(cc.CC_LiableMan);
                     cc.CC_LiableMan = user.U_Name;
-
                 }
-                label2.Visible = false;
-                gridView1.Visible = true;
                 gridView1.DataSource = listCC;
                 gridView1.DataBind();
             }
-            else
+        }
+        /// <summary>
+        /// 新增按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Add(new FrmCCCreate() { Flex = 1 });
+            this.Parent.Controls.RemoveAt(0);
+        }
+        /// <summary>
+        /// 刷新按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            try
             {
-                label2.Visible = true;
-                gridView1.Visible = false;
-               
+                //获取所有成本中心数据
+                List<CCDto> listCC = AutofacConfig.costCenterService.GetAllCC();
+                foreach (CCDto cc in listCC)
+                {
+                    UserDetailDto user = AutofacConfig.userService.GetUserByUserID(cc.CC_LiableMan);
+                    cc.CC_LiableMan = user.U_Name;
+                }
+                gridView1.Reload(listCC);
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message);
             }
         }
     }

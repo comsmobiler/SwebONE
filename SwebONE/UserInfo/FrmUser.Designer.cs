@@ -36,19 +36,27 @@ namespace SwebONE.UserInfo
             this.editBtn = new Swebui.Controls.Button();
             this.saveBtn = new Swebui.Controls.Button();
             this.cancelBtn = new Swebui.Controls.Button();
-            this.panel6 = new Swebui.Controls.Panel();
             this.label5 = new Swebui.Controls.Label();
             this.panel8 = new Swebui.Controls.Panel();
             this.userImg = new Swebui.Controls.Image();
             this.button1 = new Swebui.Controls.Button();
+            this.panel7 = new Swebui.Controls.Panel();
             this.lab = new Swebui.Controls.Label();
-            this.btnName = new Swebui.Controls.TextBox();
             this.label7 = new Swebui.Controls.Label();
+            this.panel9 = new Swebui.Controls.Panel();
+            this.btnName = new Swebui.Controls.TextBox();
             this.btnSex = new Swebui.Controls.TreeSelect();
+            this.panel10 = new Swebui.Controls.Panel();
             this.label8 = new Swebui.Controls.Label();
-            this.btnEmail = new Swebui.Controls.TextBox();
             this.label9 = new Swebui.Controls.Label();
+            this.panel11 = new Swebui.Controls.Panel();
+            this.btnEmail = new Swebui.Controls.TextBox();
             this.dpkBirthday = new Swebui.Controls.DatePicker();
+            this.panel12 = new Swebui.Controls.Panel();
+            this.label3 = new Swebui.Controls.Label();
+            this.label6 = new Swebui.Controls.Label();
+            this.panel13 = new Swebui.Controls.Panel();
+            this.txtTel = new Swebui.Controls.TextBox();
             this.psdChange = new Swebui.Controls.Button();
             // 
             // panel1
@@ -150,7 +158,14 @@ namespace SwebONE.UserInfo
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.panel4,
-            this.panel6});
+            this.label5,
+            this.panel8,
+            this.panel7,
+            this.panel9,
+            this.panel10,
+            this.panel11,
+            this.panel12,
+            this.panel13});
             this.panel2.Flex = 1;
             this.panel2.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.panel2.Name = "panel2";
@@ -226,24 +241,6 @@ namespace SwebONE.UserInfo
             this.cancelBtn.Visible = false;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // panel6
-            // 
-            this.panel6.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.label5,
-            this.panel8,
-            this.lab,
-            this.btnName,
-            this.label7,
-            this.btnSex,
-            this.label8,
-            this.btnEmail,
-            this.label9,
-            this.dpkBirthday,
-            this.psdChange});
-            this.panel6.Flex = 1;
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(450, 0);
-            // 
             // label5
             // 
             this.label5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
@@ -259,7 +256,7 @@ namespace SwebONE.UserInfo
             this.panel8.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.userImg,
             this.button1});
-            this.panel8.ItemAlign = Swebui.Controls.LayoutItemAlign.Center;
+            this.panel8.ItemAlign = Swebui.Controls.LayoutItemAlign.FlexStart;
             this.panel8.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
@@ -288,36 +285,58 @@ namespace SwebONE.UserInfo
             this.button1.Text = "更换头像";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel7
+            // 
+            this.panel7.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.lab,
+            this.label7});
+            this.panel7.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel7.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(0, 30);
+            // 
             // lab
             // 
             this.lab.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.lab.Flex = 1;
             this.lab.ForeColor = System.Drawing.Color.Silver;
-            this.lab.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.lab.Margin = new Swebui.Controls.Margin(0F, 0F, 5F, 0F);
             this.lab.Name = "lab";
-            this.lab.Size = new System.Drawing.Size(0, 35);
+            this.lab.Size = new System.Drawing.Size(0, 30);
             this.lab.Text = "昵称";
             this.lab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.label7.Flex = 1;
+            this.label7.ForeColor = System.Drawing.Color.Silver;
+            this.label7.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 30);
+            this.label7.Text = "性别";
+            this.label7.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.btnName,
+            this.btnSex});
+            this.panel9.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel9.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(0, 35);
             // 
             // btnName
             // 
             this.btnName.Border = new Swebui.Controls.Border(1F);
             this.btnName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.btnName.Flex = 1;
             this.btnName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnName.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.btnName.Margin = new Swebui.Controls.Margin(0F, 0F, 5F, 0F);
             this.btnName.Name = "btnName";
-            this.btnName.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
             this.btnName.ReadOnly = true;
             this.btnName.Size = new System.Drawing.Size(0, 35);
-            // 
-            // label7
-            // 
-            this.label7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 35);
-            this.label7.Text = "性别";
-            this.label7.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
             // btnSex
             // 
@@ -325,7 +344,10 @@ namespace SwebONE.UserInfo
             this.btnSex.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.btnSex.DefaultValue = new string[0];
             this.btnSex.Disabled = true;
-            this.btnSex.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.btnSex.DropDownHeight = 280;
+            this.btnSex.Flex = 1;
+            this.btnSex.ListBackgroundColor = System.Drawing.Color.White;
+            this.btnSex.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
             this.btnSex.Name = "btnSex";
             treeSelectNode1.Text = "男";
             treeSelectNode1.TreeID = "0";
@@ -335,61 +357,137 @@ namespace SwebONE.UserInfo
             treeSelectNode1,
             treeSelectNode2});
             this.btnSex.Size = new System.Drawing.Size(0, 35);
+            this.btnSex.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnSex_Press);
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.label8,
+            this.label9});
+            this.panel10.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel10.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(0, 30);
             // 
             // label8
             // 
             this.label8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.label8.Flex = 1;
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.label8.Margin = new Swebui.Controls.Margin(0F, 0F, 5F, 0F);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 35);
+            this.label8.Size = new System.Drawing.Size(0, 30);
             this.label8.Text = "邮箱";
             this.label8.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.label9.Flex = 1;
+            this.label9.ForeColor = System.Drawing.Color.Silver;
+            this.label9.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 30);
+            this.label9.Text = "生日";
+            this.label9.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.btnEmail,
+            this.dpkBirthday});
+            this.panel11.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel11.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(0, 35);
             // 
             // btnEmail
             // 
             this.btnEmail.Border = new Swebui.Controls.Border(1F);
             this.btnEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.btnEmail.Flex = 1;
             this.btnEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnEmail.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.btnEmail.Margin = new Swebui.Controls.Margin(0F, 0F, 5F, 0F);
             this.btnEmail.Name = "btnEmail";
-            this.btnEmail.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
             this.btnEmail.ReadOnly = true;
             this.btnEmail.Size = new System.Drawing.Size(0, 35);
-            // 
-            // label9
-            // 
-            this.label9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 35);
-            this.label9.Text = "生日";
-            this.label9.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
             // 
             // dpkBirthday
             // 
             this.dpkBirthday.Border = new Swebui.Controls.Border(1F);
             this.dpkBirthday.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpkBirthday.Enable = false;
+            this.dpkBirthday.Flex = 1;
             this.dpkBirthday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.dpkBirthday.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.dpkBirthday.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
             this.dpkBirthday.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpkBirthday.Name = "dpkBirthday";
-            this.dpkBirthday.Size = new System.Drawing.Size(0, 30);
+            this.dpkBirthday.Size = new System.Drawing.Size(0, 35);
             this.dpkBirthday.Value = new System.DateTime(2021, 11, 2, 15, 1, 50, 0);
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.label3,
+            this.label6});
+            this.panel12.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel12.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(0, 30);
+            // 
+            // label3
+            // 
+            this.label3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.label3.Flex = 1;
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Margin = new Swebui.Controls.Margin(0F, 0F, 5F, 0F);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 30);
+            this.label3.Text = "电话";
+            this.label3.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.label6.Flex = 1;
+            this.label6.ForeColor = System.Drawing.Color.Silver;
+            this.label6.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 30);
+            this.label6.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.AddRange(new Swebui.Controls.SwebControl[] {
+            this.txtTel,
+            this.psdChange});
+            this.panel13.Direction = Swebui.Controls.LayoutDirection.Row;
+            this.panel13.Margin = new Swebui.Controls.Margin(20F, 0F, 20F, 0F);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(0, 35);
+            // 
+            // txtTel
+            // 
+            this.txtTel.Border = new Swebui.Controls.Border(1F);
+            this.txtTel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.txtTel.Flex = 1;
+            this.txtTel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.txtTel.Margin = new Swebui.Controls.Margin(0F, 0F, 5F, 0F);
+            this.txtTel.Name = "txtTel";
+            this.txtTel.ReadOnly = true;
+            this.txtTel.Size = new System.Drawing.Size(0, 35);
             // 
             // psdChange
             // 
             this.psdChange.BackColor = System.Drawing.Color.Transparent;
             this.psdChange.Border = new Swebui.Controls.Border(1F);
             this.psdChange.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.psdChange.Flex = 1;
             this.psdChange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            this.psdChange.Margin = new Swebui.Controls.Margin(20F, 15F, 20F, 10F);
+            this.psdChange.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
             this.psdChange.Name = "psdChange";
             this.psdChange.NumberOfLines = 0;
-            this.psdChange.Padding = new Swebui.Controls.Padding(5F, 2F, 5F, 2F);
-            this.psdChange.Size = new System.Drawing.Size(0, 30);
+            this.psdChange.Size = new System.Drawing.Size(0, 35);
             this.psdChange.Text = "修改登录密码";
             this.psdChange.Click += new System.EventHandler(this.psdChange_Click);
             // 
@@ -416,22 +514,30 @@ namespace SwebONE.UserInfo
         private Button cancelBtn;
         private Label label2;
         private Label labTel;
-        private Panel panel6;
+        private Panel panel5;
+        private Label label1;
+        private Label labDep;
         private Label label5;
         private Panel panel8;
         private Image userImg;
         private Button button1;
+        private Panel panel7;
         private Label lab;
-        private TextBox btnName;
         private Label label7;
+        private Panel panel9;
+        private TextBox btnName;
         private TreeSelect btnSex;
+        private Panel panel10;
         private Label label8;
-        private TextBox btnEmail;
         private Label label9;
+        private Panel panel11;
+        private TextBox btnEmail;
         private DatePicker dpkBirthday;
+        private Panel panel12;
+        private Label label3;
+        private Label label6;
+        private Panel panel13;
+        private TextBox txtTel;
         private Button psdChange;
-        private Panel panel5;
-        private Label label1;
-        private Label labDep;
     }
 }

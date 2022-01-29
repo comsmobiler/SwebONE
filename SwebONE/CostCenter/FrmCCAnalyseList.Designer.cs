@@ -29,6 +29,7 @@ namespace SwebONE.CostCenter
             this.panel2 = new Swebui.Controls.Panel();
             this.ViewBtn = new Swebui.Controls.Button();
             this.gridView1 = new Swebui.Controls.GridView();
+            this.RefreshBtn = new Swebui.Controls.Button();
             // 
             // panel1
             // 
@@ -56,7 +57,8 @@ namespace SwebONE.CostCenter
             this.panel2.Border = new Swebui.Controls.Border(0F, 0F, 0F, 1F);
             this.panel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.panel2.Controls.AddRange(new Swebui.Controls.SwebControl[] {
-            this.ViewBtn});
+            this.ViewBtn,
+            this.RefreshBtn});
             this.panel2.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel2.ItemAlign = Swebui.Controls.LayoutItemAlign.Center;
             this.panel2.Margin = new Swebui.Controls.Margin(0F, 0F, 0F, 15F);
@@ -105,6 +107,21 @@ namespace SwebONE.CostCenter
             this.gridView1.RowWidth = 0;
             this.gridView1.Size = new System.Drawing.Size(0, 30);
             // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.BackColor = System.Drawing.Color.White;
+            this.RefreshBtn.Border = new Swebui.Controls.Border(1F);
+            this.RefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(234)))), ((int)(((byte)(236)))));
+            this.RefreshBtn.ForeColor = System.Drawing.Color.DimGray;
+            this.RefreshBtn.IconName = "fa fa-refresh";
+            this.RefreshBtn.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.NumberOfLines = 0;
+            this.RefreshBtn.Padding = new Swebui.Controls.Padding(10F, 0F, 10F, 0F);
+            this.RefreshBtn.Size = new System.Drawing.Size(0, 26);
+            this.RefreshBtn.Text = "刷新";
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            // 
             // FrmCCAnalyseList
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -122,5 +139,6 @@ namespace SwebONE.CostCenter
         private Panel panel2;
         private GridView gridView1;
         private Button ViewBtn;
+        private Button RefreshBtn;
     }
 }

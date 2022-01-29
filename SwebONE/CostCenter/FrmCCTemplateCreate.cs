@@ -122,12 +122,11 @@ namespace SwebONE.CostCenter
                 Toast(ex.Message, ToastLength.SHORT);
             }
         }
-
-        private void ReSetBtn_Click(object sender, EventArgs e)
-        {
-            comboBox1.DefaultValue = comboBox2.DefaultValue = comboBox3.DefaultValue = new string[] { };
-        }
-
+        /// <summary>
+        /// 页面初始化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmCCTemplateCreate_Load(object sender, EventArgs e)
         {
             try
@@ -138,10 +137,6 @@ namespace SwebONE.CostCenter
                     comboBox1.Nodes.Add(new TreeSelectNode(ccType.CC_T_TypeID, ccType.CC_T_Description));
 
                 }
-                if (type.Trim().Length > 0)
-                {
-                    comboBox1.DefaultValue = new string[] { type };
-                }
                 //获取审批人
                 GetDate();
 
@@ -151,18 +146,21 @@ namespace SwebONE.CostCenter
                     //根据成本中心模板编号获取成本中心模板数据
                     CC_Type_TemplateDto ccTemplate = AutofacConfig.costCenterService.GetTemplateByID(CTempID);
                     type = ccTemplate.CC_TT_TypeID;
-                    comboBox1.DefaultValue = new string[] { ccTemplate.CC_TT_TemplateID };
+                    if (type.Trim().Length > 0)
+                    {
+                        comboBox1.DefaultValue = new string[] { type };
+                    }
                     if (string.IsNullOrEmpty(ccTemplate.CC_TT_AEACheckers) == false)
                     {
-                        UserDetailDto user = AutofacConfig.userService.GetUserByUserID(ccTemplate.CC_TT_AEACheckers);
-                        listAEAChecks.Add(user.U_ID);
-                        comboBox2.DefaultValue = new string[] { ccTemplate.CC_TT_AEACheckers };
+                        string[] AEACheckers = ccTemplate.CC_TT_AEACheckers.Split(',');
+                        listAEAChecks = AEACheckers.ToList();
+                        comboBox2.DefaultValue = AEACheckers;
                     }
                     if (string.IsNullOrEmpty(ccTemplate.CC_TT_FinancialCheckers) == false)
                     {
-                        UserDetailDto user = AutofacConfig.userService.GetUserByUserID(ccTemplate.CC_TT_AEACheckers);
-                        listFCheckers.Add(user.U_ID);
-                          comboBox3.DefaultValue=new string[] { ccTemplate.CC_TT_FinancialCheckers };
+                        string[] FinancialCheckers = ccTemplate.CC_TT_FinancialCheckers.Split(',');
+                        listFCheckers = FinancialCheckers.ToList() ;
+                        comboBox3.DefaultValue = FinancialCheckers;
                     }
                     titleLab.Text = "模板编辑";
                 }
@@ -172,16 +170,6 @@ namespace SwebONE.CostCenter
                 MessageBox.Show(ex.Message);
             }
         }
-        /// <summary>
-        /// 类型选择事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBox1_ValueChanged(object sender, EventArgs e)
-        {
-            //  type = comboBox1.SelectKey;
-        }
-
         /// <summary>
         /// 获取审批人或抄送人数据数据
         /// </summary>
@@ -201,24 +189,58 @@ namespace SwebONE.CostCenter
                 }
             }
         }
-
-        private void comboBox2_ValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 类型选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBox1_Press(object sender, TreeSelectPressEventArgs args)
         {
-            //if (comboBox2.Text != "")
-            //{
-            //    listAEAChecks.Clear();
-            //    listAEAChecks.Add(comboBox2.SelectKey);
-            //}
-
+            type = args.TreeID;
         }
-
-        private void comboBox3_ValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 行政审批人选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void comboBox2_Press(object sender, TreeSelectPressEventArgs args)
         {
-            //if (comboBox3.Text != "")
-            //{
-            //    listFCheckers.Clear();
-            //    listFCheckers.Add(comboBox3.SelectKey);
-            //}
+            listAEAChecks.Clear();
+            if (args.Selections.Length < 1 || args.Selections.Length > 4)
+            {
+                comboBox2.DefaultValue = new string[0];
+                Toast("请选择1-4名审批人");
+            }
+            else
+            {
+                foreach (var item in args.Selections)
+                {
+                    listAEAChecks.Add(item);
+                }
+            }
+        }
+        /// <summary>
+        /// 财务审批人选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void comboBox3_Press(object sender, TreeSelectPressEventArgs args)
+        {
+            listFCheckers.Clear();
+            if (args.Selections.Length < 1 || args.Selections.Length > 4)
+            {
+                comboBox3.DefaultValue = new string[0];
+                Toast("请选择1-4名审批人");
+            }
+            else
+            {
+                foreach (var item in args.Selections)
+                {
+                    listFCheckers.Add(item);
+                }
+            }
+
+
         }
     }
 }

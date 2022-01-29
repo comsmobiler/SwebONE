@@ -304,24 +304,28 @@ namespace SwebONE.Attendance
             this.dpStartWork.Border = new Swebui.Controls.Border(1F);
             this.dpStartWork.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpStartWork.Flex = 1;
+            this.dpStartWork.Format = Swebui.Controls.DatePickerFormat.HM;
             this.dpStartWork.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.dpStartWork.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpStartWork.Mode = Swebui.Controls.DatePickerMode.Time;
             this.dpStartWork.Name = "dpStartWork";
             this.dpStartWork.Size = new System.Drawing.Size(100, 0);
             this.dpStartWork.Value = new System.DateTime(2021, 11, 18, 14, 23, 54, 0);
+            this.dpStartWork.ValueChanged += new System.EventHandler(this.dpStartWork_ValueChanged);
             // 
             // dpEndWork
             // 
             this.dpEndWork.Border = new Swebui.Controls.Border(1F);
             this.dpEndWork.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpEndWork.Flex = 1;
+            this.dpEndWork.Format = Swebui.Controls.DatePickerFormat.HM;
             this.dpEndWork.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.dpEndWork.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpEndWork.Mode = Swebui.Controls.DatePickerMode.Time;
             this.dpEndWork.Name = "dpEndWork";
             this.dpEndWork.Size = new System.Drawing.Size(100, 0);
             this.dpEndWork.Value = new System.DateTime(2021, 11, 2, 11, 51, 22, 342);
+            this.dpEndWork.ValueChanged += new System.EventHandler(this.dpEndWork_ValueChanged);
             // 
             // label7
             // 
@@ -498,24 +502,28 @@ namespace SwebONE.Attendance
             this.dpAMStartWork.Border = new Swebui.Controls.Border(1F);
             this.dpAMStartWork.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpAMStartWork.Flex = 1;
+            this.dpAMStartWork.Format = Swebui.Controls.DatePickerFormat.HM;
             this.dpAMStartWork.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.dpAMStartWork.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpAMStartWork.Mode = Swebui.Controls.DatePickerMode.Time;
             this.dpAMStartWork.Name = "dpAMStartWork";
             this.dpAMStartWork.Size = new System.Drawing.Size(100, 0);
             this.dpAMStartWork.Value = new System.DateTime(2021, 11, 2, 11, 51, 19, 943);
+            this.dpAMStartWork.ValueChanged += new System.EventHandler(this.dpAMStartWork_ValueChanged);
             // 
             // dpAMEndWork
             // 
             this.dpAMEndWork.Border = new Swebui.Controls.Border(1F);
             this.dpAMEndWork.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpAMEndWork.Flex = 1;
+            this.dpAMEndWork.Format = Swebui.Controls.DatePickerFormat.HM;
             this.dpAMEndWork.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.dpAMEndWork.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpAMEndWork.Mode = Swebui.Controls.DatePickerMode.Time;
             this.dpAMEndWork.Name = "dpAMEndWork";
             this.dpAMEndWork.Size = new System.Drawing.Size(100, 0);
             this.dpAMEndWork.Value = new System.DateTime(2021, 11, 2, 11, 51, 22, 342);
+            this.dpAMEndWork.ValueChanged += new System.EventHandler(this.dpAMEndWork_ValueChanged);
             // 
             // label10
             // 
@@ -573,24 +581,28 @@ namespace SwebONE.Attendance
             this.dpPMStartWork.Border = new Swebui.Controls.Border(1F);
             this.dpPMStartWork.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpPMStartWork.Flex = 1;
+            this.dpPMStartWork.Format = Swebui.Controls.DatePickerFormat.HM;
             this.dpPMStartWork.Margin = new Swebui.Controls.Margin(0F, 0F, 10F, 0F);
             this.dpPMStartWork.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpPMStartWork.Mode = Swebui.Controls.DatePickerMode.Time;
             this.dpPMStartWork.Name = "dpPMStartWork";
             this.dpPMStartWork.Size = new System.Drawing.Size(100, 0);
             this.dpPMStartWork.Value = new System.DateTime(2021, 11, 2, 11, 51, 19, 943);
+            this.dpPMStartWork.ValueChanged += new System.EventHandler(this.dpPMStartWork_ValueChanged);
             // 
             // dpPMEndWork
             // 
             this.dpPMEndWork.Border = new Swebui.Controls.Border(1F);
             this.dpPMEndWork.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.dpPMEndWork.Flex = 1;
+            this.dpPMEndWork.Format = Swebui.Controls.DatePickerFormat.HM;
             this.dpPMEndWork.Margin = new Swebui.Controls.Margin(5F, 0F, 5F, 0F);
             this.dpPMEndWork.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
             this.dpPMEndWork.Mode = Swebui.Controls.DatePickerMode.Time;
             this.dpPMEndWork.Name = "dpPMEndWork";
             this.dpPMEndWork.Size = new System.Drawing.Size(100, 0);
             this.dpPMEndWork.Value = new System.DateTime(2021, 11, 2, 11, 51, 22, 342);
+            this.dpPMEndWork.ValueChanged += new System.EventHandler(this.dpPMEndWork_ValueChanged);
             // 
             // panel11
             // 

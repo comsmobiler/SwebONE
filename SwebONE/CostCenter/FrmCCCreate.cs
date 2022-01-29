@@ -46,13 +46,12 @@ namespace SwebONE.CostCenter
                     CCDetailDto cc = AutofacConfig.costCenterService.GetCCByID(CCID);
                     txtCC_Name.Text = cc.CC_Name;
                     type = cc.CC_TypeID;
-                    btnType.Text = cc.CC_TypeName;
+                    btnType.DefaultValue = new string[] { cc.CC_TypeID };
                     dpkStartDate.Value = cc.CC_StartDate;
                     dpkEndDate.Value = cc.CC_EndDate;
                     txtAmount.Text = cc.CC_Amount.ToString();
                     liableMan = cc.CC_LiableMan;
-                    UserDetailDto user = AutofacConfig.userService.GetUserByUserID(cc.CC_LiableMan);
-                    btnLiableMan.Text = user.U_Name;
+                    btnLiableMan.DefaultValue = new string[] { cc.CC_LiableMan };
                     D_ID = cc.CC_DepartmentID;
                     lblDep.Text = cc.CC_DepName;
                     CTempID = cc.CC_TemplateID;
@@ -81,14 +80,7 @@ namespace SwebONE.CostCenter
             List<CostCenter_Type> listCCType = AutofacConfig.costCenterService.GetAllCCType();
             foreach (CostCenter_Type ccType in listCCType)
             {
-                btnType.Items.Add(new ComboBoxItem(ccType.CC_T_TypeID, ccType.CC_T_Description));
-                if (type.Trim().Length > 0)
-                {
-                    if (type.Trim().Equals(ccType.CC_T_TypeID))
-                    {
-                        btnType.Text = ccType.CC_T_Description;
-                    }
-                }
+                btnType.Nodes.Add(new TreeSelectNode(ccType.CC_T_TypeID, ccType.CC_T_Description));
             }
         }
         /// <summary>
@@ -99,14 +91,7 @@ namespace SwebONE.CostCenter
             List<UserDto> listuser = AutofacConfig.userService.GetAllUsers();
             foreach (UserDto user in listuser)
             {
-                btnLiableMan.Items.Add(new ComboBoxItem(user.U_ID, user.U_Name));
-                if (liableMan.Trim().Length > 0)
-                {
-                    if (liableMan.Trim().Equals(user.U_ID))
-                    {
-                        btnLiableMan.Text = user.U_Name;
-                    }
-                }
+                btnLiableMan.Nodes.Add(new TreeSelectNode(user.U_ID, user.U_Name));
             }
         }
         private void BackBtn_Click(object sender, EventArgs e)
@@ -198,23 +183,6 @@ namespace SwebONE.CostCenter
 
         }
         /// <summary>
-        /// 责任人选择事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnLiableMan_ValueChanged(object sender, EventArgs e)
-        {
-            if (btnLiableMan.SelectKey != null)
-            {
-                liableMan = btnLiableMan.SelectKey;
-                UserDepDto user = AutofacConfig.userService.GetUseDepByUserID(liableMan);
-                D_ID = user.Dep_ID;
-                lblDep.Text = user.Dep_Name;
-
-            }
-
-        }
-        /// <summary>
         /// 模板选择事件
         /// </summary>
         /// <param name="sender"></param>
@@ -237,12 +205,21 @@ namespace SwebONE.CostCenter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnType_ValueChanged(object sender, EventArgs e)
+        private void btnType_Press(object sender, TreeSelectPressEventArgs args)
         {
-            if (btnType.SelectKey != null)
-            {
-                type = btnType.SelectKey;
-            }
+            type = args.TreeID;
+        }
+        /// <summary>
+        /// 责任人选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLiableMan_Press(object sender, TreeSelectPressEventArgs args)
+        {
+            liableMan = args.TreeID;
+            UserDepDto user = AutofacConfig.userService.GetUseDepByUserID(liableMan);
+            D_ID = user.Dep_ID;
+            lblDep.Text = user.Dep_Name;
         }
     }
 }

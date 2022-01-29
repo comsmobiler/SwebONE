@@ -40,6 +40,27 @@ namespace SwebONE.UserInfo
                 {
                     UserInputDto upuser = new UserInputDto();
                     upuser.U_ID = Client.Session["U_ID"].ToString();
+                    string[] suffixs = args.ResourceID.Split('.');
+                    string imgName = "";
+                    if (userImg.ResourceID == "boy" || userImg.ResourceID == "girl")
+                    {
+                        imgName = upuser.U_ID + "img" + "." + suffixs[1];
+
+                        args.SaveFile(imgName, SwebResourceManager.DefaultImagePath);
+                    }
+                    else
+                    {
+                        string[] suffixs1 = userImg.ResourceID.Split('.');
+                        if (suffixs.Length > 1)
+                        {
+                            imgName = suffixs1[0] + "." + suffixs[1];
+                        }
+                        else
+                            imgName = userImg.ResourceID + "." + suffixs[1];
+                        args.SaveFile(imgName, SwebResourceManager.DefaultImagePath);
+
+                    }
+                    userImg.ResourceID = userImg1.ResourceID = imgName;
                     upuser.U_Portrait = userImg.ResourceID;
                     ReturnInfo result = AutofacConfig.userService.UpdateUser(upuser);
                     if (result.IsSuccess == false)
@@ -48,30 +69,7 @@ namespace SwebONE.UserInfo
                     }
                     else
                     {
-                        string[] suffixs = args.ResourceID.Split('.');
-                        string imgName = "";
-                        if (userImg.ResourceID == "boy" || userImg.ResourceID == "girl")
-                        {
-                            imgName = upuser.U_ID + "img" + "." + suffixs[1];
-
-                            args.SaveFile(imgName, SwebResourceManager.DefaultImagePath);
-                        }
-                        else
-
-                        {
-                            string[] suffixs1 = userImg.ResourceID.Split('.');
-                            if (suffixs.Length > 1)
-                            {
-                                imgName = suffixs1[0] + "." + suffixs[1];
-                            }
-                            else
-                                imgName = userImg.ResourceID + "." + suffixs[1];
-                            args.SaveFile(imgName, SwebResourceManager.DefaultImagePath);
-
-                        }
-                        userImg.ResourceID = userImg1.ResourceID = imgName;
-                        userImg.Refresh();
-                        userImg1.Refresh();
+                        Toast("头像上传成功！");
                     }
                 }
             });
@@ -93,12 +91,12 @@ namespace SwebONE.UserInfo
                 btnSex.Disabled = true;
                 saveBtn.Visible = cancelBtn.Visible = false;
                 editBtn.Visible = true;
+                txtTel.ReadOnly = true;
                 UserDetails userDetails = new UserDetails();
                 UserDetailDto user = userDetails.getUser(Client.Session["U_ID"].ToString());
 
                 if (user != null)
                 {
-                    // imgPortrait.ResourceID = user.U_Portrait;
                     userImg.ResourceID = userImg1.ResourceID = user.U_Portrait;
                     btnName.Text = btnName1.Text = user.U_Name;
                     labTel.Text = user.U_Tel;
@@ -118,10 +116,12 @@ namespace SwebONE.UserInfo
                             break;
                         case Sex.女:
                             btnSex.Tag = "1";
+                            btnSex.DefaultValue = new string[] { "1" };
                             break;
                     }
                     dpkBirthday.Value = user.U_Birthday;
                     btnEmail.Text = user.U_Email;
+                    txtTel.Text = user.U_Tel;
                 }
                 else
                 {
@@ -139,12 +139,13 @@ namespace SwebONE.UserInfo
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void editBtn_Click(object sender, EventArgs e)
-        { 
+        {
             btnEmail.ReadOnly = btnName.ReadOnly = false;
             dpkBirthday.Enable = true;
             btnSex.Disabled = false;
             saveBtn.Visible = cancelBtn.Visible = true;
             editBtn.Visible = false;
+            txtTel.ReadOnly = false;
         }
         /// <summary>
         /// 取消编辑
@@ -175,6 +176,7 @@ namespace SwebONE.UserInfo
                 if (btnSex.Tag == null)
                     throw new Exception("请选择性别");
                 upuser.U_Sex = (Sex)Convert.ToInt32(btnSex.Tag);
+                upuser.U_Tel = txtTel.Text.Trim();
                 ReturnInfo result = AutofacConfig.userService.UpdateUser(upuser);
                 //返回结果如果为false，则修改失败
                 if (result.IsSuccess == false)
@@ -185,6 +187,7 @@ namespace SwebONE.UserInfo
                 else
                 {
                     GetUser();
+                    ((MainForm)this.Form).SetUserName(btnName.Text.Trim());
                     Toast("保存成功", ToastLength.SHORT);
                 }
             }
@@ -196,7 +199,15 @@ namespace SwebONE.UserInfo
 
         private void psdChange_Click(object sender, EventArgs e)
         {
-            ShowDialog(new PWDLayout());
+            if (Client.Session["U_ID"].ToString() == "13123456789")
+                Toast("演示账号不允许更改密码！");
+          else
+                ShowDialog(new PWDLayout());
+        }
+
+        private void btnSex_Press(object sender, TreeSelectPressEventArgs args)
+        {
+            btnSex.Tag = args.TreeID;
         }
     }
 }

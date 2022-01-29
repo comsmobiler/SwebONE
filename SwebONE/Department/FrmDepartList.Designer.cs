@@ -145,8 +145,10 @@ namespace SwebONE.Department
             // 
             // treeView1
             // 
+            this.treeView1.DefaultValue = new string[0];
             this.treeView1.Flex = 1;
             this.treeView1.Name = "treeView1";
+            this.treeView1.SelectBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
             this.treeView1.Size = new System.Drawing.Size(0, 30);
             this.treeView1.Press += new Swebui.Controls.TreeView.TreeViewOnPressEventHandler(this.treeView1_Press_1);
             // 

@@ -73,89 +73,13 @@ namespace SwebONE.Department
             List<UserDto> listDepUser = AutofacConfig.userService.GetAllUsers();//获取分配部门人员
             if (listDepUser.Count > 0)
             {
-                if (string.IsNullOrEmpty(uid))
-                    foreach (UserDto user in listDepUser)
-                    {
-                        comboBox1.Items.Add(new ComboBoxItem(user.U_ID, user.U_Name));
-                    }
-                else
-                    foreach (UserDto user in listDepUser)
-                    {
-                        comboBox1.Items.Add(new ComboBoxItem(user.U_ID, user.U_Name));
-                        if (user.U_ID == uid)
-                        {
-                            comboBox1.Text = user.U_Name;
-                        }
-                    }
-            }
-
-        }
-
-        /// <summary>
-        /// 选择负责人
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void comboBox1_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comboBox1.SelectKey != null && string.IsNullOrEmpty(comboBox1.Text) == false)
+                foreach (UserDto user in listDepUser)
                 {
-                    //查询该选中的用户是否已经是部门责任人
-                    bool isLeader = AutofacConfig.departmentService.IsLeader(comboBox1.SelectKey);
-                    //如果该选中责任人已是部门责任人，则报错
-                    if (isLeader == true)
-                    {
-                        comboBox1.Text = "";
-                        throw new Exception(comboBox1.Text + "已是部门责任人，请先解散部门！");
-                    }
-                    //
-                    UserDepDto userdep = AutofacConfig.userService.GetUseDepByUserID(comboBox1.SelectKey);
-                    //如果选中用户已是部门成员且不是部门责任人，则进行选择是否确认为部门责任人，若确认则为该部门负责人
-                    if (userdep != null & isLeader == false)
-                        if (userdep.Dep_ID != null)
-                        {
-                            if (string.IsNullOrEmpty(userdep.Dep_ID) == false)
-                                MessageBox.Show(comboBox1.Text + "已是部门成员，是否确定为该部门责任人？", MessageBoxButtons.YesNo, (Object s1, MessageBoxHandlerArgs args) =>
-                                {
-                                    //此委托为异步委托事件
-                                    if (args.Result == ShowResult.Yes)
-                                    {
-                                        leader = comboBox1.SelectKey;
-                                        Bind();
-                                    }
-                                    else
-                                    {
-                                        comboBox1.Text = "";
-                                    }
-                                });
-                            else
-                            {
-                                //如果选中用户不是部门责任人且不是部门成员，则为该部门负责人
-                                if (isLeader == false & userdep != null & string.IsNullOrEmpty(userdep.Dep_ID) == true)
-                                {
-                                    leader = comboBox1.SelectKey;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            //如果选中用户不是部门责任人且不是部门成员，则为该部门负责人
-                            if (isLeader == false & userdep != null & string.IsNullOrEmpty(userdep.Dep_ID) == true)
-                            {
-                                leader = comboBox1.SelectKey;
-                            }
-                        }
-                    Bind();
+                    comboBox1.Nodes.Add(new TreeSelectNode(user.U_ID, user.U_Name));
                 }
+                if (string.IsNullOrEmpty(uid) == false)
+                    comboBox1.DefaultValue = new string[] { uid };
             }
-            catch (Exception ex)
-            {
-                Toast(ex.Message, ToastLength.SHORT);
-            }
-
         }
         /// <summary>
         /// 初始部门成员列表
@@ -762,9 +686,9 @@ namespace SwebONE.Department
                                     if (result.IsSuccess == true)
                                     {
                                         ShowResult = ShowResult.Yes;
-                                       
-                                        Toast("部门已删除！", ToastLength.LONG); 
-                                        BackBtn_Click(null,null);
+
+                                        Toast("部门已删除！", ToastLength.LONG);
+                                        BackBtn_Click(null, null);
                                     }
                                     else
                                     {
@@ -796,6 +720,67 @@ namespace SwebONE.Department
 
                 }
             });
+        }
+        /// <summary>
+        /// 选中负责人事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void comboBox1_Press(object sender, TreeSelectPressEventArgs args)
+        {
+            try
+            {
+                //查询该选中的用户是否已经是部门责任人
+                bool isLeader = AutofacConfig.departmentService.IsLeader(args.TreeID);
+                //如果该选中责任人已是部门责任人，则报错
+                UserDepDto userdep = AutofacConfig.userService.GetUseDepByUserID(args.TreeID);
+                if (isLeader == true)
+                {
+                    comboBox1.DefaultValue = new string[0];
+                    throw new Exception(userdep.U_Name + "已是部门责任人，请先解散部门！");
+                }
+                //如果选中用户已是部门成员且不是部门责任人，则进行选择是否确认为部门责任人，若确认则为该部门负责人
+                if (userdep != null & isLeader == false)
+                    if (userdep.Dep_ID != null)
+                    {
+                        if (string.IsNullOrEmpty(userdep.Dep_ID) == false)
+                            MessageBox.Show(userdep.U_Name + "已是部门成员，是否确定为该部门责任人？", MessageBoxButtons.YesNo, (Object s1, MessageBoxHandlerArgs args1) =>
+                            {
+                                //此委托为异步委托事件
+                                if (args1.Result == ShowResult.Yes)
+                                {
+                                    leader = args.TreeID;
+                                    Bind();
+                                }
+                                else
+                                {
+                                    comboBox1.DefaultValue = new string[0];
+                                }
+                            });
+                        else
+                        {
+                            //如果选中用户不是部门责任人且不是部门成员，则为该部门负责人
+                            if (isLeader == false & userdep != null & string.IsNullOrEmpty(userdep.Dep_ID) == true)
+                            {
+                                leader = args.TreeID;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //如果选中用户不是部门责任人且不是部门成员，则为该部门负责人
+                        if (isLeader == false & userdep != null & string.IsNullOrEmpty(userdep.Dep_ID) == true)
+                        {
+                            leader = args.TreeID;
+                        }
+                    }
+                Bind();
+
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message, ToastLength.SHORT);
+            }
         }
     }
 }

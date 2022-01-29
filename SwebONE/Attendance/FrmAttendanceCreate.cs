@@ -49,6 +49,7 @@ namespace SwebONE.Attendance
                 {
                     throw new Exception("请输入考勤类型！");
                 }
+                //if()
                 if (string.IsNullOrEmpty(ATemplate.AT_WeeklyWorkingDay) == true)
                 {
                     throw new Exception("请输入考勤每周上班时间！");
@@ -144,7 +145,7 @@ namespace SwebONE.Attendance
                                 case WorkTimeType.一天一上下班:
                                     if (At.AT_StartTime != null)
                                     {
-                                        ATemplate.AT_AMStartTime = At.AT_StartTime;
+                                        ATemplate.AT_StartTime = At.AT_StartTime;
                                         dpStartWork.Value = Convert.ToDateTime(At.AT_StartTime);
                                     }
                                     if (At.AT_EndTime != null)
@@ -508,6 +509,38 @@ namespace SwebONE.Attendance
                     ATemplate.CustomDates = aTDateChoose.listatcdInput;
                 }
             });
+        }
+
+        private void dpStartWork_ValueChanged(object sender, EventArgs e)
+        {
+            ATemplate.AT_StartTime = dpStartWork.Value;
+        }
+
+        private void dpEndWork_ValueChanged(object sender, EventArgs e)
+        {
+            ATemplate.AT_EndTime = dpEndWork.Value;
+        }
+
+        private void dpAMStartWork_ValueChanged(object sender, EventArgs e)
+        {
+            ATemplate.AT_AMStartTime = dpAMStartWork.Value;
+        }
+
+        private void dpAMEndWork_ValueChanged(object sender, EventArgs e)
+        {
+            ATemplate.AT_AMEndTime = dpAMEndWork.Value;
+
+        }
+
+        private void dpPMStartWork_ValueChanged(object sender, EventArgs e)
+        {
+            ATemplate.AT_PMStartTime = dpPMStartWork.Value;
+
+        }
+
+        private void dpPMEndWork_ValueChanged(object sender, EventArgs e)
+        {
+            ATemplate.AT_PMEndTime = dpPMEndWork.Value;
         }
     }
 }

@@ -149,8 +149,11 @@ namespace SwebONE
 
         private void button2_Click(object sender, EventArgs e)
         {
-            psdPanel.Visible = false;
-            fastLoginPanel.Visible = true;
+            Client.Session["U_ID"] = "13123456789";
+            List<Role> role = AutofacConfig.userService.GetRoleByUserID("13123456789");
+            Client.Session["Roler"] = role;
+            MainForm mainForm = new MainForm();
+            Show(mainForm);
         }
     }
 }

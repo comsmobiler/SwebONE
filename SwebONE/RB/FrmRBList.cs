@@ -19,6 +19,11 @@ namespace SwebONE.RB
         #region "definition"
         AutofacConfig AutofacConfig = new AutofacConfig();//调用配置类
         #endregion
+        /// <summary>
+        /// 页面初始化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmRBList_Load(object sender, EventArgs e)
         {
             try
@@ -82,12 +87,21 @@ namespace SwebONE.RB
                 Toast(ex.Message, ToastLength.SHORT);
             }
         }
+        /// <summary>
+        /// 新增按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddBtn_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Add(new FrmRBCreate() { Flex = 1 });
             this.Parent.Controls.RemoveAt(0);
         }
-
+        /// <summary>
+        /// 编辑按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditBtn_Click(object sender, EventArgs e)
         {
             gridView1.GetSelectedRows((obj, args) =>
@@ -115,7 +129,11 @@ namespace SwebONE.RB
                 }
             });
         }
-
+        /// <summary>
+        /// 查看按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewBtn_Click(object sender, EventArgs e)
         {
             gridView1.GetSelectedRows((obj, args) =>
@@ -137,11 +155,68 @@ namespace SwebONE.RB
                 }
             });
         }
-
+        /// <summary>
+        /// 刷新按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
-            this.Parent.Controls.Add(new FrmRBList() { Flex = 1 });
-            this.Parent.Controls.RemoveAt(0);
+            try
+            {
+                //获取当前用户创建的报销数据
+                List<ReimbursementDto> listRBDto = AutofacConfig.rBService.GetByCreateUsers(Client.Session["U_ID"].ToString());
+                List<DataGridview> listCreated = new List<DataGridview>();//我发起的数据
+                UserDetails userDetails = new UserDetails();
+
+                //如果报销数据条数大于0，则添加到我发起的数据
+                if (listRBDto.Count > 0)
+                {
+                    foreach (ReimbursementDto reimbursement in listRBDto)
+                    {
+                        DataGridview dataGItem = new DataGridview();
+                        dataGItem.ID = reimbursement.RB_ID;
+                        if (string.IsNullOrEmpty(reimbursement.U_Portrait) == true)
+                        {
+                            UserDetailDto user = userDetails.getUser(reimbursement.U_ID);
+                            if (user != null)
+                            {
+                                dataGItem.U_Portrait = user.U_Portrait;
+                            }
+                        }
+                        else
+                        {
+                            dataGItem.U_Portrait = reimbursement.U_Portrait;
+                        }
+                        dataGItem.Name = reimbursement.U_Name + "的" + DataGridviewType.报销;
+                        dataGItem.Type = ((int)Enum.Parse(typeof(DataGridviewType), DataGridviewType.报销.ToString())).ToString();
+                        dataGItem.CreateDate = reimbursement.RB_CreateDate.ToString("yyyy/MM/dd");
+                        switch (reimbursement.RB_Status)
+                        {
+                            case (int)RB_Status.新建:
+                                dataGItem.L_StatusDesc = "等待责任人审批";
+                                break;
+                            case (int)RB_Status.责任人审批:
+                                dataGItem.L_StatusDesc = "等待行政审批";
+                                break;
+                            case (int)RB_Status.行政审批:
+                                dataGItem.L_StatusDesc = "等待财务审批";
+                                break;
+                            case (int)RB_Status.财务审批:
+                                dataGItem.L_StatusDesc = "财务已审批";
+                                break;
+                            case (int)RB_Status.已拒绝:
+                                dataGItem.L_StatusDesc = "已审批（拒绝）";
+                                break;
+                        }
+                        listCreated.Add(dataGItem);
+                    }
+                } gridView1.Reload(listCreated);//绑定gridView数据
+            }
+            catch (Exception ex)
+            {
+                Toast(ex.Message, ToastLength.SHORT);
+            }
         }
 
 

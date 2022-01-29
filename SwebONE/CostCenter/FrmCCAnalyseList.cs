@@ -45,13 +45,16 @@ namespace SwebONE.CostCenter
                     cc.CC_LiableMan = user.U_Name;
 
                 }
-
                 gridView1.DataSource = listCC;
                 gridView1.DataBind();
             }
 
         }
-
+        /// <summary>
+        /// 查看按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewBtn_Click(object sender, EventArgs e)
         {
             gridView1.GetSelectedRows((obj, args) =>
@@ -75,6 +78,28 @@ namespace SwebONE.CostCenter
                 }
 
             });
+        }
+        /// <summary>
+        /// 刷新按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            //获取所有成本中心数据
+            List<CCDto> listCC = AutofacConfig.costCenterService.GetAllCC();
+
+            if (listCC.Count > 0)
+            {
+                foreach (CCDto cc in listCC)
+                {
+                    UserDetailDto user = AutofacConfig.userService.GetUserByUserID(cc.CC_LiableMan);
+                    cc.CC_LiableMan = user.U_Name;
+
+                }
+                gridView1.Reload(listCC);
+            }
+
         }
     }
 }

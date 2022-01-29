@@ -189,138 +189,140 @@ namespace SwebONE.Work
                 {
                     //    DayTime = DateTime.Now.ToString();            //给DayTime值，使得页面显示统计模式
                 }
-
-                int x = 0;
-                while (x < table.Rows.Count - 1)    //当上一条行项未签到，且时间已超过下一行项的签到时间时，显示未签到
-                {
-                    if (DateTime.Now >= Convert.ToDateTime(table.Rows[x + 1]["Time"]))
-                    {
-                        if (Convert.ToInt32(table.Rows[x]["ID"].ToString()) % 2 == 0)
-                        {
-                            table.Rows[x]["Info"] = "未签到";
-                        }
-                        else
-                        {
-                            table.Rows[x]["Info"] = "未签退";
-                        }
-                        x++;
-                    }
-                    else
-                    {
-                        x++;
-                        break;
-                    }
-                }
-                int count = 0;             //当前页面未签到和未签退的行项数
-                foreach (DataRow Row in table.Rows)
-                {
-                    if (Row["Info"].ToString() == "未签到" || Row["Info"].ToString() == "未签退")
-                    {
-                        count++;
-                    }
-                }
-                for (int i = listLogs.Count; i < count; i++)//当未签行项数大于数据库已记录未签条数时
-                {
-                    if (table.Rows[i]["Info"].ToString() == "未签到" || table.Rows[i]["Info"].ToString() == "未签退")
-                    {
-                        newLog.AL_Reason = null;
-                        switch ((StatisticsTime)Enum.Parse(typeof(StatisticsTime), table.Rows[i]["Description"] + "时间"))
-                        {
-                            case StatisticsTime.上午上班时间:
-                                newLog.AL_LogTimeType = StatisticsTime.上午上班时间;
-                                break;
-                            case StatisticsTime.上午下班时间:
-                                newLog.AL_LogTimeType = StatisticsTime.上午下班时间;
-                                break;
-                            case StatisticsTime.下午上班时间:
-                                newLog.AL_LogTimeType = StatisticsTime.下午上班时间;
-                                break;
-                            case StatisticsTime.下午下班时间:
-                                newLog.AL_LogTimeType = StatisticsTime.下午下班时间;
-                                break;
-                            case StatisticsTime.上班时间:
-                                newLog.AL_LogTimeType = StatisticsTime.上班时间;
-                                break;
-                            case StatisticsTime.下班时间:
-                                newLog.AL_LogTimeType = StatisticsTime.下班时间;
-                                break;
-                        }
-                        newLog.AL_Date = DateTime.Now;      //考勤日期
-                        newLog.AL_UserID = UserID;          //用户ID
-                        if ((WorkTimeType)Enum.Parse(typeof(WorkTimeType), CommutingType) == WorkTimeType.一天一上下班)
-                        {
-                            newLog.AL_CommutingType = WorkTimeType.一天一上下班;       //上下班类型
-                        }
-                        else
-                        {
-                            newLog.AL_CommutingType = WorkTimeType.一天二上下班;        //上下班类型
-                        }
-                        newLog.AL_Position = "无签到地点";                 //考勤地点
-                        newLog.AL_OnTime = Convert.ToDateTime(table.Rows[i]["Time"]);    //签到准点时间
-                        if (Convert.ToInt32(table.Rows[i]["ID"].ToString()) % 2 == 0)            //判断考勤状态
-                        {
-                            newLog.AL_Status = AttendanceType.未签到;
-                        }
-                        else
-                        {
-                            newLog.AL_Status = AttendanceType.未签退;
-                        }
-                        ReturnInfo r = AutofacConfig.attendanceService.AddAttendanceLog(newLog);
-                    }
-                }
-                if (Convert.ToInt32(table.Rows[x - 1]["ID"]) % 2 == 0)
-                {
-                    table.Rows[x - 1]["Action"] = "签到";    //尚未签到的第一行，显示签到(签退)按钮 
-                }
-                else
-                {
-                    table.Rows[x - 1]["Action"] = "签退";    //尚未签到的第一行，显示签到(签退)按钮 
-                }
-                List<ALDto> listNewLogs = AutofacConfig.attendanceService.GetALByUserAndDate(UserID, DateTime.Now);        //判断当天是否已经有签到                
-                for (int i = 0; i <= listNewLogs.Count - 1; i++)
-                {
-                    table.Rows[i]["Action"] = null;           //隐藏已签到这行的签到按钮
-                    if (i + 1 < table.Rows.Count)
-                    {
-                        if (Convert.ToInt32(table.Rows[i + 1]["ID"]) % 2 == 0)
-                        {
-                            table.Rows[i + 1]["Action"] = "签到";    //尚未签到的第一行，显示签到(签退)按钮 
-                        }
-                        else
-                        {
-                            table.Rows[i + 1]["Action"] = "签退";    //尚未签到的第一行，显示签到(签退)按钮 
-                        }
-                    }
-
-                    foreach (ALDto Row in listNewLogs)
-                    {
-                        AL_Date = Row.AL_Date;                 //考勤时间
-                        if (Convert.ToInt32(table.Rows[i]["ID"].ToString()) % 2 == 0 && (Row.AL_Status == "准点" || Row.AL_Status == "迟到"))         //显示已签和签到时间
-                        {
-                            table.Rows[i]["Info"] = "已签到" + "  " + AL_Date.ToString("HH:mm");
-                        }
-                        else if (Convert.ToInt32(table.Rows[i]["ID"].ToString()) % 2 == 1 && (Row.AL_Status != "准点" || Row.AL_Status == "早退"))
-                        {
-                            table.Rows[i]["Info"] = "已签退" + "  " + AL_Date.ToString("HH:mm");
-                        }
-                        if (Row.AL_OnTime == Convert.ToDateTime(table.Rows[i]["Time"]))
-                        {
-                            if (Row.AL_Status == "未签到" || Row.AL_Status == "未签退")         //显示未签
-                            {
-                                table.Rows[i]["Info"] = Row.AL_Status;
-                            }
-                            if (string.IsNullOrEmpty(Row.AL_Reason) == false)   //如果有迟到早退原因，显示信息提示框
-                            {
-                                table.Rows[i]["Img"] = "";
-                            }
-                        }
-                    }
-                    ATMainPicture.BlackWhite(table, i);        //已经签到的行项中，图片显示黑白
-                }
-                ATMainPicture.getPictures(table);        //对每个行项进行匹配，显示正确的图片信息
+             
                 listView1.Rows.Clear();
                 if (table.Rows.Count > 0)           //如果数据不为空
                 {
+                    #region
+                    int x = 0;
+                    while (x < table.Rows.Count - 1)    //当上一条行项未签到，且时间已超过下一行项的签到时间时，显示未签到
+                    {
+                        if (DateTime.Now >= Convert.ToDateTime(table.Rows[x + 1]["Time"]))
+                        {
+                            if (Convert.ToInt32(table.Rows[x]["ID"].ToString()) % 2 == 0)
+                            {
+                                table.Rows[x]["Info"] = "未签到";
+                            }
+                            else
+                            {
+                                table.Rows[x]["Info"] = "未签退";
+                            }
+                            x++;
+                        }
+                        else
+                        {
+                            x++;
+                            break;
+                        }
+                    }
+                    int count = 0;             //当前页面未签到和未签退的行项数
+                    foreach (DataRow Row in table.Rows)
+                    {
+                        if (Row["Info"].ToString() == "未签到" || Row["Info"].ToString() == "未签退")
+                        {
+                            count++;
+                        }
+                    }
+                    for (int i = listLogs.Count; i < count; i++)//当未签行项数大于数据库已记录未签条数时
+                    {
+                        if (table.Rows[i]["Info"].ToString() == "未签到" || table.Rows[i]["Info"].ToString() == "未签退")
+                        {
+                            newLog.AL_Reason = null;
+                            switch ((StatisticsTime)Enum.Parse(typeof(StatisticsTime), table.Rows[i]["Description"] + "时间"))
+                            {
+                                case StatisticsTime.上午上班时间:
+                                    newLog.AL_LogTimeType = StatisticsTime.上午上班时间;
+                                    break;
+                                case StatisticsTime.上午下班时间:
+                                    newLog.AL_LogTimeType = StatisticsTime.上午下班时间;
+                                    break;
+                                case StatisticsTime.下午上班时间:
+                                    newLog.AL_LogTimeType = StatisticsTime.下午上班时间;
+                                    break;
+                                case StatisticsTime.下午下班时间:
+                                    newLog.AL_LogTimeType = StatisticsTime.下午下班时间;
+                                    break;
+                                case StatisticsTime.上班时间:
+                                    newLog.AL_LogTimeType = StatisticsTime.上班时间;
+                                    break;
+                                case StatisticsTime.下班时间:
+                                    newLog.AL_LogTimeType = StatisticsTime.下班时间;
+                                    break;
+                            }
+                            newLog.AL_Date = DateTime.Now;      //考勤日期
+                            newLog.AL_UserID = UserID;          //用户ID
+                            if ((WorkTimeType)Enum.Parse(typeof(WorkTimeType), CommutingType) == WorkTimeType.一天一上下班)
+                            {
+                                newLog.AL_CommutingType = WorkTimeType.一天一上下班;       //上下班类型
+                            }
+                            else
+                            {
+                                newLog.AL_CommutingType = WorkTimeType.一天二上下班;        //上下班类型
+                            }
+                            newLog.AL_Position = "无签到地点";                 //考勤地点
+                            newLog.AL_OnTime = Convert.ToDateTime(table.Rows[i]["Time"]);    //签到准点时间
+                            if (Convert.ToInt32(table.Rows[i]["ID"].ToString()) % 2 == 0)            //判断考勤状态
+                            {
+                                newLog.AL_Status = AttendanceType.未签到;
+                            }
+                            else
+                            {
+                                newLog.AL_Status = AttendanceType.未签退;
+                            }
+                            ReturnInfo r = AutofacConfig.attendanceService.AddAttendanceLog(newLog);
+                        }
+                    }
+                    if (Convert.ToInt32(table.Rows[x - 1]["ID"]) % 2 == 0)
+                    {
+                        table.Rows[x - 1]["Action"] = "签到";    //尚未签到的第一行，显示签到(签退)按钮 
+                    }
+                    else
+                    {
+                        table.Rows[x - 1]["Action"] = "签退";    //尚未签到的第一行，显示签到(签退)按钮 
+                    }
+                    List<ALDto> listNewLogs = AutofacConfig.attendanceService.GetALByUserAndDate(UserID, DateTime.Now);        //判断当天是否已经有签到                
+                    for (int i = 0; i <= listNewLogs.Count - 1; i++)
+                    {
+                        table.Rows[i]["Action"] = null;           //隐藏已签到这行的签到按钮
+                        if (i + 1 < table.Rows.Count)
+                        {
+                            if (Convert.ToInt32(table.Rows[i + 1]["ID"]) % 2 == 0)
+                            {
+                                table.Rows[i + 1]["Action"] = "签到";    //尚未签到的第一行，显示签到(签退)按钮 
+                            }
+                            else
+                            {
+                                table.Rows[i + 1]["Action"] = "签退";    //尚未签到的第一行，显示签到(签退)按钮 
+                            }
+                        }
+
+                        foreach (ALDto Row in listNewLogs)
+                        {
+                            AL_Date = Row.AL_Date;                 //考勤时间
+                            if (Convert.ToInt32(table.Rows[i]["ID"].ToString()) % 2 == 0 && (Row.AL_Status == "准点" || Row.AL_Status == "迟到"))         //显示已签和签到时间
+                            {
+                                table.Rows[i]["Info"] = "已签到" + "  " + AL_Date.ToString("HH:mm");
+                            }
+                            else if (Convert.ToInt32(table.Rows[i]["ID"].ToString()) % 2 == 1 && (Row.AL_Status != "准点" || Row.AL_Status == "早退"))
+                            {
+                                table.Rows[i]["Info"] = "已签退" + "  " + AL_Date.ToString("HH:mm");
+                            }
+                            if (Row.AL_OnTime == Convert.ToDateTime(table.Rows[i]["Time"]))
+                            {
+                                if (Row.AL_Status == "未签到" || Row.AL_Status == "未签退")         //显示未签
+                                {
+                                    table.Rows[i]["Info"] = Row.AL_Status;
+                                }
+                                if (string.IsNullOrEmpty(Row.AL_Reason) == false)   //如果有迟到早退原因，显示信息提示框
+                                {
+                                    table.Rows[i]["Img"] = "";
+                                }
+                            }
+                        }
+                        ATMainPicture.BlackWhite(table, i);        //已经签到的行项中，图片显示黑白
+                    }
+                    ATMainPicture.getPictures(table);        //对每个行项进行匹配，显示正确的图片信息
+                    #endregion
                     lblInfo.Visible = false;
                     listView1.Visible = true;
                     this.listView1.DataSource = table;
