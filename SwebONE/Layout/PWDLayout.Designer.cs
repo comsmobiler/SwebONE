@@ -70,6 +70,7 @@ namespace SwebONE.Layout
             this.txtEditInfo});
             this.oldPsdPanel.Direction = Swebui.Controls.LayoutDirection.Row;
             this.oldPsdPanel.Name = "oldPsdPanel";
+            this.oldPsdPanel.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
             this.oldPsdPanel.Size = new System.Drawing.Size(0, 35);
             // 
             // label2
@@ -97,6 +98,7 @@ namespace SwebONE.Layout
             this.panel4.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel4.Margin = new Swebui.Controls.Margin(0F, 10F, 0F, 0F);
             this.panel4.Name = "panel4";
+            this.panel4.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
             this.panel4.Size = new System.Drawing.Size(0, 35);
             // 
             // button1
@@ -117,6 +119,7 @@ namespace SwebONE.Layout
             // 
             this.errorlab.Flex = 1;
             this.errorlab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.errorlab.Margin = new Swebui.Controls.Margin(10F, 0F, 0F, 0F);
             this.errorlab.Name = "errorlab";
             this.errorlab.Size = new System.Drawing.Size(100, 0);
             this.errorlab.VerticalAlignment = Swebui.Controls.VerticalAlignment.Center;
@@ -130,6 +133,7 @@ namespace SwebONE.Layout
             this.txtPwd1});
             this.panel5.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel5.Name = "panel5";
+            this.panel5.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
             this.panel5.Size = new System.Drawing.Size(0, 35);
             this.panel5.Visible = false;
             // 
@@ -160,6 +164,7 @@ namespace SwebONE.Layout
             this.panel6.Direction = Swebui.Controls.LayoutDirection.Row;
             this.panel6.Margin = new Swebui.Controls.Margin(0F, 10F, 0F, 0F);
             this.panel6.Name = "panel6";
+            this.panel6.Overflow = Swebui.Controls.LayoutOverflow.Hidden;
             this.panel6.Size = new System.Drawing.Size(0, 35);
             this.panel6.Visible = false;
             // 
