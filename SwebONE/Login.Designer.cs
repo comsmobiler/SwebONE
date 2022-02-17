@@ -59,13 +59,13 @@ namespace SwebONE
             // image1
             // 
             this.image1.Name = "image1";
-            this.image1.ResourceID = "login_from_left.png.png";
+            this.image1.ResourceID = "logn_left.jpg";
             this.image1.Size = new System.Drawing.Size(300, 0);
             this.image1.SizeMode = Swebui.Controls.ImageSizeMode.Stretch;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(126)))), ((int)(((byte)(50)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(83)))), ((int)(((byte)(151)))));
             this.panel2.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.image2,
             this.psdPanel,
@@ -98,7 +98,6 @@ namespace SwebONE
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(139)))), ((int)(((byte)(71)))));
             this.panel3.Border = new Swebui.Controls.Border(1F);
             this.panel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.panel3.BorderRadius = 4;
@@ -126,6 +125,7 @@ namespace SwebONE
             this.txtTel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.txtTel.Flex = 1;
             this.txtTel.FontSize = 12F;
+            this.txtTel.ForeColor = System.Drawing.Color.White;
             this.txtTel.Name = "txtTel";
             this.txtTel.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
             this.txtTel.Size = new System.Drawing.Size(100, 32);
@@ -133,7 +133,6 @@ namespace SwebONE
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(139)))), ((int)(((byte)(71)))));
             this.panel5.Border = new Swebui.Controls.Border(1F);
             this.panel5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.panel5.BorderRadius = 4;
@@ -162,6 +161,7 @@ namespace SwebONE
             this.txtPwd.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.txtPwd.Flex = 1;
             this.txtPwd.FontSize = 12F;
+            this.txtPwd.ForeColor = System.Drawing.Color.White;
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
             this.txtPwd.SecurityMode = true;
@@ -225,7 +225,6 @@ namespace SwebONE
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(139)))), ((int)(((byte)(71)))));
             this.panel7.Border = new Swebui.Controls.Border(1F);
             this.panel7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.panel7.BorderRadius = 4;
@@ -254,6 +253,7 @@ namespace SwebONE
             this.textBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.textBox1.Flex = 1;
             this.textBox1.FontSize = 12F;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Name = "textBox1";
             this.textBox1.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
             this.textBox1.Size = new System.Drawing.Size(100, 32);
@@ -278,7 +278,6 @@ namespace SwebONE
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(139)))), ((int)(((byte)(71)))));
             this.panel8.Border = new Swebui.Controls.Border(1F);
             this.panel8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.panel8.BorderRadius = 4;
@@ -307,6 +306,7 @@ namespace SwebONE
             this.txtVcode1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.txtVcode1.Flex = 1;
             this.txtVcode1.FontSize = 12F;
+            this.txtVcode1.ForeColor = System.Drawing.Color.White;
             this.txtVcode1.Name = "txtVcode1";
             this.txtVcode1.Padding = new Swebui.Controls.Padding(10F, 0F, 0F, 0F);
             this.txtVcode1.Size = new System.Drawing.Size(100, 32);
@@ -333,7 +333,7 @@ namespace SwebONE
             // 
             // Login
             // 
-            this.BackgroundImage = "login_bg.jpg";
+            this.BackgroundImage = "bg.png";
             this.BackgroundImageSizeMode = Swebui.Controls.ImageSizeMode.Cover;
             this.Controls.AddRange(new Swebui.Controls.SwebControl[] {
             this.panel1});

@@ -57,6 +57,7 @@ namespace SwebONE.Layout
             this.amountTxt.Flex = 1;
             this.amountTxt.Name = "amountTxt";
             this.amountTxt.Size = new System.Drawing.Size(100, 35);
+            this.amountTxt.ValueType = Swebui.Controls.TextBoxValueType.Number;
             // 
             // rbDate
             // 
@@ -64,7 +65,6 @@ namespace SwebONE.Layout
             this.rbDate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.rbDate.Flex = 1;
             this.rbDate.MaxDate = new System.DateTime(9997, 12, 31, 23, 59, 59, 999);
-            this.rbDate.MinDate = new System.DateTime(((long)(0)));
             this.rbDate.Name = "rbDate";
             this.rbDate.Size = new System.Drawing.Size(100, 35);
             this.rbDate.Value = new System.DateTime(2021, 11, 9, 16, 43, 24, 58);

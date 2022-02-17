@@ -292,6 +292,7 @@ namespace SwebONE.Leave
             this.comboBox2.Placeholder = "请选择1-4审核人";
             this.comboBox2.Size = new System.Drawing.Size(100, 0);
             this.comboBox2.TagBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
+            this.comboBox2.TagColor = System.Drawing.Color.White;
             this.comboBox2.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox2_Press);
             // 
             // panel9
@@ -359,6 +360,7 @@ namespace SwebONE.Leave
             this.comboBox3.Placeholder = "请选择0-4个抄送人";
             this.comboBox3.Size = new System.Drawing.Size(100, 35);
             this.comboBox3.TagBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(137)))), ((int)(((byte)(248)))));
+            this.comboBox3.TagColor = System.Drawing.Color.White;
             this.comboBox3.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.comboBox3_Press);
             // 
             // label14

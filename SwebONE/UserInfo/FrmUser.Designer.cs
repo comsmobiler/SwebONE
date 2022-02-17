@@ -19,8 +19,8 @@ namespace SwebONE.UserInfo
         [System.Diagnostics.DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            Swebui.Controls.TreeSelectNode treeSelectNode1 = new Swebui.Controls.TreeSelectNode();
-            Swebui.Controls.TreeSelectNode treeSelectNode2 = new Swebui.Controls.TreeSelectNode();
+            Swebui.Controls.TreeSelectNode treeSelectNode3 = new Swebui.Controls.TreeSelectNode();
+            Swebui.Controls.TreeSelectNode treeSelectNode4 = new Swebui.Controls.TreeSelectNode();
             this.panel1 = new Swebui.Controls.Panel();
             this.userImg1 = new Swebui.Controls.Image();
             this.btnName1 = new Swebui.Controls.Label();
@@ -77,6 +77,7 @@ namespace SwebONE.UserInfo
             this.userImg1.ResourceID = "logon.png";
             this.userImg1.Size = new System.Drawing.Size(0, 210);
             this.userImg1.SizeMode = Swebui.Controls.ImageSizeMode.Zoom;
+            this.userImg1.SourceHotReadload = true;
             // 
             // btnName1
             // 
@@ -271,6 +272,7 @@ namespace SwebONE.UserInfo
             this.userImg.ResourceID = "logon.png";
             this.userImg.Size = new System.Drawing.Size(80, 80);
             this.userImg.SizeMode = Swebui.Controls.ImageSizeMode.Stretch;
+            this.userImg.SourceHotReadload = true;
             // 
             // button1
             // 
@@ -281,7 +283,7 @@ namespace SwebONE.UserInfo
             this.button1.Name = "button1";
             this.button1.NumberOfLines = 0;
             this.button1.Padding = new Swebui.Controls.Padding(5F, 2F, 5F, 2F);
-            this.button1.Size = new System.Drawing.Size(70, 24);
+            this.button1.Size = new System.Drawing.Size(80, 24);
             this.button1.Text = "更换头像";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -349,13 +351,13 @@ namespace SwebONE.UserInfo
             this.btnSex.ListBackgroundColor = System.Drawing.Color.White;
             this.btnSex.Margin = new Swebui.Controls.Margin(5F, 0F, 0F, 0F);
             this.btnSex.Name = "btnSex";
-            treeSelectNode1.Text = "男";
-            treeSelectNode1.TreeID = "0";
-            treeSelectNode2.Text = "女";
-            treeSelectNode2.TreeID = "1";
+            treeSelectNode3.Text = "男";
+            treeSelectNode3.TreeID = "0";
+            treeSelectNode4.Text = "女";
+            treeSelectNode4.TreeID = "1";
             this.btnSex.Nodes.AddRange(new Swebui.Controls.TreeSelectNode[] {
-            treeSelectNode1,
-            treeSelectNode2});
+            treeSelectNode3,
+            treeSelectNode4});
             this.btnSex.Size = new System.Drawing.Size(0, 35);
             this.btnSex.Press += new Swebui.Controls.TreeSelect.TreeSelectOnPressEventHandler(this.btnSex_Press);
             // 
