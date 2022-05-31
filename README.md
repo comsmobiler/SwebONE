@@ -3,12 +3,9 @@
 
 SwebONE是通过SWEBUI开发的一款办公管理系统。  
 IDE为VisualStudio，开发平台为Smobiler，SWEBDesigner通过实现.NET的component组件方式，借助VisualStudio集成开发环境来开发web应用.
-SwebONE is an office management solution for WEB, developed by .NET. The development environment is VisualStudio, the development platform is SWEBUI 
+SwebONE is an office management solution for WEB, developed by .NET. The development environment is VisualStudio, the development platform is SWEBUI .
 
 ![登录页](./Resource/logon.gif)      
-
-也可前往Gitee码云获取源码，https://gitee.com/smobiler/SmoONE  
-
 
 ### 源代码运行环境要求
 
