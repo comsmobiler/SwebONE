@@ -46,7 +46,7 @@ SwebDesigner版本：最新版([下载并安装SwebDesigner](https://www.swebui.
 ### 相关资料
 
 
-1. 点击查看SWEbUI Designer下载(https://www.swebui.com/download.html)
+1. 点击查看SWEBUI Designer下载(https://www.swebui.com/download.html)
 2. 点击查看一键学习(https://www.swebui.com/guide/quickstart.aspx)
 3. 点击查看SWEBUI官网 (https://www.swebui.com/index.html)
 4. 若出现图标无法显示的情况，是因为开启了防火墙，点击查看设置(http://www.smobiler.com/forum.php?mod=viewthread&tid=12)
